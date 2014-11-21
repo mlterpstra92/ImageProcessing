@@ -8,16 +8,15 @@ function convolutedImage = IPfilter(image, mask)
     paddedImage = zeros(rows + 2 * b, cols + 2 * a);
     paddedImage(1 + b:end - b, 1 + a:end - a) = image;
     convolutedImage = zeros(size(paddedImage));
+    tic;
     for x=1 + b:size(convolutedImage, 2) - b
         for y=1 + a:size(convolutedImage, 1) - a
-            convolutedImage(y, x) = sum(sum(mask .* paddedImage(y - b : y + b, x - a : x + a)));
-%             for i=-b:b
-%                 for j=-a:a
-%                     convolutedImage(y, x) = convolutedImage(y, x) + mask(i + b + 1, j + a + 1)*paddedImage(y + j, x + i);
-%                 end
-%             end
+            convolutedImage(y, x) = sum(sum(mask .* paddedImage(y - a : y + a, x - b : x + b)));
         end
     end
+    elapsedTime = toc;
+    disp(['Total execution time: ', num2str(elapsedTime)]);
+    disp(['Convolution time per pixel: ', num2str(elapsedTime / (rows * cols))]);
     convolutedImage = convolutedImage(1+b:end - b, 1 + a:end - a);
 end
 
