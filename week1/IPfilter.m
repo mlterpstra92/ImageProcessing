@@ -10,11 +10,12 @@ function convolutedImage = IPfilter(image, mask)
     convolutedImage = zeros(size(paddedImage));
     for x=1 + b:size(convolutedImage, 2) - b
         for y=1 + a:size(convolutedImage, 1) - a
-            for i=-b:b
-                for j=-a:a
-                    convolutedImage(y, x) = convolutedImage(y, x) + mask(i + b + 1, j + a + 1)*paddedImage(y + j, x + i);
-                end
-            end
+            convolutedImage(y, x) = sum(sum(mask .* paddedImage(y - b : y + b, x - a : x + a)));
+%             for i=-b:b
+%                 for j=-a:a
+%                     convolutedImage(y, x) = convolutedImage(y, x) + mask(i + b + 1, j + a + 1)*paddedImage(y + j, x + i);
+%                 end
+%             end
         end
     end
     convolutedImage = convolutedImage(1+b:end - b, 1 + a:end - a);
