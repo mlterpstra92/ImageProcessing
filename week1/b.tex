@@ -8,8 +8,8 @@ In this formula the value $r$ represents the value of the pixel the transformati
 Here the type of \verb image  is a $y \times x$-matrix. The output image is also an $y \times x$-matrix with the transformation applied.
 
 \subsection*{b - Enhancing a fractured spine}
-In order to make sure the implementation is correct and the log transformation is useful the operation is applied to an image that could benefit from a compressed dynamic range. Figures~\ref{fig:withoutEnhancement} and~\ref{fig:withEnhancement} are both pictures of a fractured spine, but figure~\ref{fig:withEnhancement} has the log transform applied to it with $c = 1.75$.
-\begin{figure}
+In order to make sure the implementation is correct and the log transformation is useful the operation is applied to an image that could benefit from a compressed dynamic range. Figures~\ref{fig:withoutEnhancement} and~\ref{fig:withEnhancement} are both pictures of a fractured spine, but figure~\ref{fig:withEnhancement} has the log transform applied to it with $c = 1.75$. We have chosen this value because we felt it has the best trade-off in enhancing areas that were less visible while not overexposing values that already had a high intensity.
+\begin{figure}[!Htb]
  \centering
  \begin{subfigure}[b]{0.49\linewidth}
   \includegraphics[width=\textwidth]{breukLelijk.eps} 
