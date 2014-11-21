@@ -1,6 +1,6 @@
 function scaledImage = IPresizebl(image, yFactor, xFactor)
+    image = im2double(image);
     scaledImage = zeros(round(xFactor*size(image, 1)), round(yFactor*size(image, 2)));
-    size(scaledImage)
     for xIdx=1:size(scaledImage, 1)
         for yIdx=1:size(scaledImage, 2)
             originalXIndex = max(1, min(xIdx / xFactor, size(image, 1)));
