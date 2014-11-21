@@ -7,32 +7,37 @@ This means that we look at the four pixels in the original image that are closes
 The code is given and explained below:
 \matlabexternal{IPresizebl.m}
 
-\subsection*{a - Resizing a chronometer}
+\subsection*{b - Resizing a chronometer}
 The file \texttt{chronometer1250dpi.tif} is an image file of a very high resolution.
 For some purposes it is useful to have a smaller images.
-Our function, \texttt{IPresizebl} is made for exactly this purpose (among others).
+Our function, \texttt{IPresizebl} is made for exactly this purpose.
 
-The original image is shown in Figure \ref{fig:tiger}
+The downscaled image is shown in Figure \ref{fig:chrono_down}.
 
-\begin{figure}
+\begin{figure}[!Htb]
+ \centering
+ \includegraphics{scaledDownChrono.eps}
+ \caption{Downscaled chronometer. An artifact of downscaling is the `pixelization' of the image.}
+ \label{fig:chrono_down}
+\end{figure}
+
+\subsection*{c - Upscaling a downscaled chronometer}
+Of course, after downscaling, information is lost. This can be visualized by scaling the downscaled image back up to the original size, and comparing the result to the original image. The comparison is shown in Figure \ref{fig:chrono_compare}.
+
+\begin{figure}[!Htb]
 \centering
  \begin{subfigure}[b]{0.45\textwidth}
   \includegraphics[width=\textwidth]{originalChrono.eps}
   \caption{Original chronometer}
   \label{fig:chrono_original}
  \end{subfigure}
- ~
  \begin{subfigure}[b]{0.45\textwidth}
   \includegraphics[width=\textwidth]{rescaledUpChrono.eps}
-  \caption{Down}
+  \caption{Re-upscaled chronometer}
   \label{fig:chrono_down_up}
  \end{subfigure}
-\caption{}\label{fig:chrono_compare}
+ \caption{Comparation of original chronometer and the downscaled chronometer that has been upscaled back to the original size. During the downscaling, only the weighted averages of four pixels are stored, so the original information is lost. Moreover, not even all pixels in the original image always contribute to the downscaled image, since some pixels are simply skipped.}
+ \label{fig:chrono_compare}
 \end{figure}
 
-\begin{figure}
- \centering
- \includegraphics{scaledDownChrono.eps}
- \caption{Downscaled chronometer}
- \label{fig:chrono_down}
-\end{figure}
+\clearpage
