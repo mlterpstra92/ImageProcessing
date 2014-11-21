@@ -36,3 +36,4 @@
 *.tex.backup
 week*/report.pdf
 *.m~
+*.kate-swp
