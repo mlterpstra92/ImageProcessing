@@ -34,6 +34,6 @@
 *.xdy
 *.tdo
 *.tex.backup
-week*/report.pdf
+*.pdf
 *.m~
 *.kate-swp
