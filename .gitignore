@@ -33,4 +33,6 @@
 *.vrb
 *.xdy
 *.tdo
+*.tex.backup
 week*/report.pdf
+*.m~
