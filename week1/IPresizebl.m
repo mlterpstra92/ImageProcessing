@@ -1,20 +1,25 @@
-function scaledImage = IPresizebl(image, yFactor, xFactor)
-    scaledImage = zeros(round(xFactor*size(image, 1)), round(yFactor*size(image, 2)));
-    for xIdx=1:size(scaledImage, 1)
-        for yIdx=1:size(scaledImage, 2)
-            originalXIndex = max(1, min(xIdx / xFactor, size(image, 1)));
-            originalYIndex = max(1, min(yIdx / yFactor, size(image, 2)));
+function scaledImage = IPresizebl(image, x_f, y_f)
+    scaledImage = zeros(round(x_f*size(image, 2)), round(y_f*size(image, 1)));
+    for i=1:size(scaledImage, 2)
+        for j=1:size(scaledImage, 1)
+            % Compute the x-coordinate in the original image
+            x = max(1, min(i / x_f, size(image, 2)));
+            y = max(1, min(j / y_f, size(image, 1)));
             
+            % Make a matrix with on every row a neighbor.
+            % First two elements of a row are coordinates.
+            % Last element of a row is the value of that pixel.
             neighbors = zeros(4, 3);
-            neighbors(1,:) = [floor(originalXIndex), floor(originalYIndex), image(floor(originalXIndex), floor(originalYIndex))];
-            neighbors(2,:) = [ceil(originalXIndex), floor(originalYIndex), image(ceil(originalXIndex), floor(originalYIndex))];
-            neighbors(3,:) = [floor(originalXIndex), ceil(originalYIndex), image(floor(originalXIndex), ceil(originalYIndex))];
-            neighbors(4,:) = [ceil(originalXIndex), ceil(originalYIndex), image(ceil(originalXIndex), ceil(originalYIndex))];
+            neighbors(1,:) = [floor(y), floor(x), image(floor(y), floor(x))];
+            neighbors(2,:) = [ceil(y), floor(x), image(floor(y), ceil(x))];
+            neighbors(3,:) = [floor(y), ceil(x), image(ceil(y), floor(x))];
+            neighbors(4,:) = [ceil(y), ceil(x), image(ceil(y), ceil(x))];
             
-            alpha = originalXIndex - neighbors(1, 1);
-            beta = originalYIndex - neighbors(1, 2);
-            S = [(1-alpha)*(1-beta), alpha*(1 - beta), (1 - alpha) * beta, alpha*beta];
-            scaledImage(xIdx, yIdx) = sum(S .* neighbors(:,3)');
+            % Calculate the weighted average and insert it in scaledImage.
+            alpha = x - neighbors(1, 2);
+            beta = y - neighbors(1, 1);
+            S = [(1-alpha)*(1-beta), alpha*(1-beta), (1-alpha)*beta, alpha*beta];
+            scaledImage(yIdy, i) = sum(S .* neighbors(:,3)');
         end
     end
 end
