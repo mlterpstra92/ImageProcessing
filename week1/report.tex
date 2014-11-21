@@ -10,7 +10,7 @@
 \definecolor{Green}{rgb}{0,0.75,0.0}
 \definecolor{LightGray}{rgb}{0.6,0.6,0.6}
 \definecolor{DarkGray}{rgb}{0.3,0.3,0.3}
-\lstset{language=Matlab,
+\newcommand\matlabstyle{\lstset{language=Matlab,
    keywords={function,uint8,uint16,uint32,double,break,case,catch,continue,else,elseif,end,for,global,if,otherwise,persistent,return,switch,try,while},
    basicstyle=\ttfamily\small,
    breaklines=true,
@@ -25,13 +25,24 @@
    tabsize=2,
    showspaces=false,
    showstringspaces=false,
-   captionpos=b}
+   captionpos=b}}
 
 %Boldface text for type writer font
 \usepackage{bold-extra} %\DeclareFontShape{OT1}{cmtt}{bx}{n}{<5><6><7><8><9><10><10.95><12><14.4><17.28><20.74><24.88>cmttb10}{}
 
 %Break words properly at the end of a line (which isn't sloppy...)
 \sloppy
+
+% New definition of square root:
+% it renames \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% it defines the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
 
 %Use command \exercise for each exercise
 \newcounter{exerciseCount}
@@ -42,19 +53,35 @@
 %Use command \code for code snippets
 \newcommand{\code}[1]{\textnormal{\texttt{#1}}}
 
+% Python environment
+\lstnewenvironment{matlab}[1][]
+{
+\matlabstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\matlabexternal[2][]{{
+\matlabstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\matlabinline[1]{{\matlabstyle\lstinline!#1!}}
+\usepackage{amsmath, amssymb, graphics, setspace}
+
 
 
 \title{\textsf{Image Processing \\ Lab 1}}
-\author{Han Kruiger \and Maarten Terpstra}
+\author{Han Kruiger \and Maarten Terpstra (s2028980)}
 \date{\today}
 
 \begin{document}
 \maketitle
-
-\exercise{Zooming and shrinking by bilinear interpolation}
 \input{a.tex}
 \input{b.tex}
 \input{c.tex}
+\section{blabla}
 % \begin{enumerate}
 % \item
 % Here comes an explanation how you can reduce the number of intensity levels of an image. After that, you also list the source code of the relevant function with some comments at each step.
