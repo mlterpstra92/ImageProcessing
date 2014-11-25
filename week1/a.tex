@@ -12,7 +12,15 @@ The file \texttt{chronometer1250dpi.tif} is an image file of a very high resolut
 For some purposes it is useful to have a smaller images.
 Our function, \texttt{IPresizebl} is made for exactly this purpose.
 
-The downscaled image is shown in Figure \ref{fig:chrono_down}.
+For comparison, the original image of the chronometer is shown in Figure~\ref{fig:chrono_original0}.
+The downscaled image is shown in Figure~\ref{fig:chrono_down}.
+
+\begin{figure}[!Htb]
+ \centering
+ \includegraphics{originalChrono.eps}
+ \caption{Original chronometer image.}
+ \label{fig:chrono_original0}
+\end{figure}
 
 \begin{figure}[!Htb]
  \centering
@@ -21,15 +29,17 @@ The downscaled image is shown in Figure \ref{fig:chrono_down}.
  \label{fig:chrono_down}
 \end{figure}
 
+\clearpage
+
 \subsection*{c - Upscaling a downscaled chronometer}
 Of course, after downscaling, information is lost. This can be visualized by scaling the downscaled image back up to the original size, and comparing the result to the original image. The comparison is shown in Figure \ref{fig:chrono_compare}.
 
-\begin{figure}[!Htb]
+\begin{figure}[!Hbt]
 \centering
  \begin{subfigure}[b]{0.45\textwidth}
   \includegraphics[width=\textwidth]{originalChrono.eps}
   \caption{Original chronometer}
-  \label{fig:chrono_original}
+  \label{fig:chrono_original1}
  \end{subfigure}
  \begin{subfigure}[b]{0.45\textwidth}
   \includegraphics[width=\textwidth]{rescaledUpChrono.eps}
