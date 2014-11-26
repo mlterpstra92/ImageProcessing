@@ -46,7 +46,7 @@ $\frac{1}{273}$
 \end{center}
 \end{table}
 
-\subsection*{IPGradient}
+\subsection*{b - IPGradient}
 We have also implemented the gradient magnitude computation. Normally this would mean that for each location $(x, y)$ of an image the rate of change in the direction of the gradient vector must be computed, which is $M(x, y) = mag(\nabla f) = \sqrt{g_x ^2 + g_y ^2}$. However, according to (3.6-18) of Digital Image Processing, this value is approximately equal to the Sobel operators. These matrices are defined as in table~\ref{tbl:sobel}. Using both these kernels and taking the sum of the absolute results of the convolutions of the original image, figures~\ref{fig:moonOrig} and~\ref{fig:moonSharp} are obtained. 
 \begin{table}[!htb]
 \begin{center}
@@ -56,9 +56,9 @@ We have also implemented the gradient magnitude computation. Normally this would
 1 & 2 & 1 \\ \hline
 \end{tabular}
 \begin{tabular}{|c|c|c|}\hline
--1 & 0 & -1 \\ \hline
--2 & 0 & -2 \\ \hline
--1 & 0 & -1 \\ \hline
+-1 & 0 & 1 \\ \hline
+-2 & 0 & 2 \\ \hline
+-1 & 0 & 1 \\ \hline
 \end{tabular}
 
 \caption{Both the Sobel kernels for image sharpening}
@@ -70,14 +70,34 @@ We have also implemented the gradient magnitude computation. Normally this would
 \centering
  \begin{subfigure}[b]{0.45\textwidth}
   \includegraphics[width=\textwidth]{moonOriginal.eps}
-  \caption{The original input images, a slightly blurred moon}
+  \caption{The original input images, a slightly blurred moon. \newline ~\newline}
   \label{fig:moonOrig}
  \end{subfigure}
  \begin{subfigure}[b]{0.45\textwidth}
   \includegraphics[width=\textwidth]{moonSharpened.eps}
-  \caption{The Sobel operators applied to the previous figures. Edges are now much more prominent.}
+  \caption{The Sobel operators applied to the previous figures, thus computing the gradient magnitude. Edges are now much more prominent as the gradient is the highest here.}
   \label{fig:moonSharp}
  \end{subfigure}
  \caption{Comparison of the original moon image and the moon image sharpened using \texttt{IPgradient}. It is clear that edges of objects (i.e. where the gradient magnitude is high) are much brighter and clearer than other objects.}
  \label{fig:moon}
 \end{figure}
+The MATLAB code to determine these images is the following:
+\matlabexternal{IPgradient.m}
+
+\subsection*{c - Order of operations}
+We reasoned that generally there is a difference in the result when the order of the operations is concerned. We believe that this is due to the following reason. If a person would apply a sharpening filter first and subsequently a blur filter, pixels with a high gradient magnitude would first be highlighted and then slightly smoothed. However, if an blur filter is applied and then a sharpening filter, the overall gradient magnitude is lowered and therefore results in less highlights and deformations than would occur as in the former scenario. \newline
+Therefore we figure that there will be a difference in the output images depending of the order of the blur and sharpen operations. We'd also reckon that generally images are more aesthetically pleasing when an image is first blurred and then sharpened. \newline 
+We have tried to test this hypothesis by doing both operations and then comparing the results as figures~\ref{fig:angios} and figures~\ref{fig:blobs} illustrate. We can now conclude that there indeed is a difference between the images when the order of operations is changes. 
+\begin{figure}[!Htb]
+ \centering
+ \includegraphics{angios.eps}
+ \caption{An image of an angiogram with different orders in sharpening and blurring. A difference in resulting images can be observed. }
+ \label{fig:angios}
+\end{figure}
+\begin{figure}[!Htb]
+ \centering
+ \includegraphics{blobs.eps}
+ \caption{An image of blobs with different orders in sharpening and blurring. A difference in resulting images can be observed.}
+ \label{fig:blobs}
+\end{figure}
+
