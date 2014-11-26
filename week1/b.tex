@@ -11,26 +11,34 @@ Here the type of \verb image  is a $y \times x$-matrix. The output image is a $y
 \subsection*{b - Enhancing a fractured spine}
 In order to make sure the implementation is correct and the log transformation is useful, the operation is applied to an image that could benefit from a compressed dynamic range.
 
-Figures~\ref{fig:withoutEnhancement} to~\ref{fig:withMoreEnhancement} are pictures of a fractured spine, but Figure~\ref{fig:withEnhancement} has the log transformation applied to it with $c = 1.75$ and Figure~\ref{fig:withMoreEnhancement} has the log transformation with $c=3$. 
-We have chosen two values for the transformation, since the higher value (Figure \ref{fig:withMoreEnhancement}) shows more detail in the darker areas, whereas there is still some detail in the lighter areas for the lower value of $c$ in Figure \ref{fig:withEnhancement}. We have chosen these values specifically because we felt it has the best trade-off in enhancing areas that were less visible while not overexposing values that already had a high intensity.
+Figure~\ref{fig:fractured_spine_original} shows an image of a fractured spine. Not all regions of interest are clearly visible; the image can benefit from some contrast enhancement.
+Figure~\ref{fig:fractured_spines} shows images of a fractured spine were the value for \(c\) in the log transformation is varied.
+
+It is clearly visible that the lowest values of \(c\) produce underexposed images, and the highest values of \(c\) produce overexposed images.
+Both of these are not desirable, so the ideal value most be somewhere in between.
+
+In our opinion, the values \(c=2\) and \(c=2.5\) produces the best results, since it looks like the best trade-off in enhancing areas that are darker while not overexposing values that already have higher brightness.
+This is why we produced another set of images in that interval, which are shown in Figure~\ref{fig:fractured_spines_best}.
 
 \begin{figure}[!Htb]
- \centering
- \begin{subfigure}[b]{0.32\linewidth}
-  \includegraphics[width=\textwidth]{breukLelijk.eps} 
-  \caption{No enhancement}
-  \label{fig:withoutEnhancement} 
- \end{subfigure}
- \begin{subfigure}[b]{0.32\linewidth}
-  \includegraphics[width=\textwidth]{breukMooi.eps}
-  \caption{Enhanced with \(c=1.75\)}
-  \label{fig:withEnhancement}
- \end{subfigure}
-\begin{subfigure}[b]{0.32\linewidth}
-  \includegraphics[width=\textwidth]{breukOokMooi.eps}
-  \caption{Enhanced with \(c=3\)}
-  \label{fig:withMoreEnhancement}
- \end{subfigure}
- \caption{Comparison of images of a fractured spine with and without the log transform.}
+  \centering
+  \includegraphics[width=\textwidth]{fracturedSpineOriginal.eps}
+  \caption{Original fractured spine image.}
+  \label{fig:fractured_spine_original}
 \end{figure}
+
+\begin{figure}[!Htb]
+  \centering
+  \includegraphics[width=\textwidth]{fracturedSpines.eps}
+  \caption{Comparison of images of a fractured spine with different values for \(c\).}
+  \label{fig:fractured_spines}
+\end{figure}
+
+\begin{figure}[!Htb]
+  \centering
+  \includegraphics[width=\textwidth]{fracturedSpinesBest.eps}
+  \caption{Comparison of images of a fractured spine with different values for \(c\). In our opinion, this interval shows the best results, since the contrast in the region of interest is enhanced.}
+  \label{fig:fractured_spines_best}
+\end{figure}
+
 \clearpage
