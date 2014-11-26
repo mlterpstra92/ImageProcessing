@@ -25,7 +25,7 @@ Figures~\ref{fig:nonblur} and~\ref{fig:blur} illustrate the result.
  \end{subfigure}
  \begin{subfigure}[b]{0.49\linewidth}
   \includegraphics[width=\textwidth]{blurred.eps}
-  \caption{The same image convoluted with a \(5 \times 5\) Gaussian kernel}
+  \caption{The same image masked with a \(5\times5\) Gaussian kernel}
   \label{fig:blur}
  \end{subfigure}
  \caption{Gaussian mask applied to an image to demonstrate convolution}
@@ -45,3 +45,39 @@ $\frac{1}{273}$
 \label{tbl:gauss}
 \end{center}
 \end{table}
+
+\subsection*{IPGradient}
+We have also implemented the gradient magnitude computation. Normally this would mean that for each location $(x, y)$ of an image the rate of change in the direction of the gradient vector must be computed, which is $M(x, y) = mag(\nabla f) = \sqrt{g_x ^2 + g_y ^2}$. However, according to (3.6-18) of Digital Image Processing, this value is approximately equal to the Sobel operators. These matrices are defined as in table~\ref{tbl:sobel}. Using both these kernels and taking the sum of the absolute results of the convolutions of the original image, figures~\ref{fig:moonOrig} and~\ref{fig:moonSharp} are obtained. 
+\begin{table}[!htb]
+\begin{center}
+\begin{tabular}{|c|c|c|}\hline
+-1 & -2 & -1 \\ \hline
+0 & 0 & 0 \\ \hline
+1 & 2 & 1 \\ \hline
+\end{tabular}
+\begin{tabular}{|c|c|c|}\hline
+-1 & 0 & -1 \\ \hline
+-2 & 0 & -2 \\ \hline
+-1 & 0 & -1 \\ \hline
+\end{tabular}
+
+\caption{Both the Sobel kernels for image sharpening}
+\label{tbl:sobel}
+\end{center}
+\end{table}
+
+\begin{figure}[!Hbt]
+\centering
+ \begin{subfigure}[b]{0.45\textwidth}
+  \includegraphics[width=\textwidth]{moonOriginal.eps}
+  \caption{The original input images, a slightly blurred moon}
+  \label{fig:moonOrig}
+ \end{subfigure}
+ \begin{subfigure}[b]{0.45\textwidth}
+  \includegraphics[width=\textwidth]{moonSharpened.eps}
+  \caption{The Sobel operators applied to the previous figures. Edges are now much more prominent.}
+  \label{fig:moonSharp}
+ \end{subfigure}
+ \caption{Comparison of the original moon image and the moon image sharpened using \texttt{IPgradient}. It is clear that edges of objects (i.e. where the gradient magnitude is high) are much brighter and clearer than other objects.}
+ \label{fig:moon}
+\end{figure}
