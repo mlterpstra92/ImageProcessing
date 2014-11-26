@@ -3,6 +3,6 @@ function outImage = IPgradient( image )
 %   Detailed explanation goes here
     sobelHor = [-1, -2, -1; 0,0,0; 1, 2, 1];
     sobelVert = sobelHor';
-    outImage = IPfilter(image, sobelHor) + IPfilter(image, sobelVert);
+    outImage = abs(IPfilter(image, sobelHor)) + abs(IPfilter(image, sobelVert));
 end
 
