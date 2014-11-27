@@ -49,7 +49,7 @@ $\frac{1}{273}$
 \end{table}
 
 \subsection*{b - IPGradient}
-We have also implemented the gradient magnitude computation. Normally this would mean that for each location $(x, y)$ of an image the rate of change in the direction of the gradient vector must be computed, which is $M(x, y) = mag(\nabla f) = \sqrt{g_x ^2 + g_y ^2}$. However, according to (3.6-18) of Digital Image Processing, this value is approximately equal to the Sobel operators. These matrices are defined as in table~\ref{tbl:sobel}. Using both these kernels and taking the sum of the absolute results of the convolutions of the original image, figures~\ref{fig:moonOrig} and~\ref{fig:moonSharp} are obtained. 
+We have also implemented the gradient magnitude computation. Normally this would mean that for each location $(x, y)$ of an image the rate of change in the direction of the gradient vector must be computed, which is $M(x, y) = mag(\nabla f) = \sqrt{g_x ^2 + g_y ^2}$. However, according to (3.6-18) of Digital Image Processing\cite[p.~189]{gonzalez2002digital}, this value is approximately equal to the Sobel operators. These matrices are defined as in table~\ref{tbl:sobel}. Using both these kernels and taking the sum of the absolute results of the convolutions of the original image, figures~\ref{fig:moonOrig} and~\ref{fig:moonSharp} are obtained. 
 \begin{table}[!htb]
 \begin{center}
 \begin{tabular}{|c|c|c|}\hline

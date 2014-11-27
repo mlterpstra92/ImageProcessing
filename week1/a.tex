@@ -7,6 +7,7 @@ This means that we look at the four pixels in the original image that are closes
 The code is given and explained below:
 \matlabexternal{IPresizebl.m}
 
+The function takes a scaling factor for the x-direction ($x_f$) and y-direction($y_f$). Then for each sampling point the four nearest pixels in the original image are stored. The sampled value in the scaled image is the bilinear interpolation of the values of the neighboring pixels of the sampling point.
 \subsection*{b - Resizing a chronometer}
 The file \texttt{chronometer1250dpi.tif} is an image file of a very high resolution.
 For some purposes it is useful to have a smaller images.
@@ -32,7 +33,7 @@ The image that is downscaled with a factor 12.5 is shown in Figure~\ref{fig:chro
 \clearpage
 
 \subsection*{c - Upscaling a downscaled chronometer}
-Of course, after downscaling, information is lost. This can be visualized by scaling the downscaled image back up to the original size, and comparing the result to the original image. The comparison is shown in Figure \ref{fig:chrono_compare}.
+Of course, after downscaling, information is lost. This can be visualized by scaling the downscaled image back up to the original size, and comparing the result to the original image. The comparison is shown in Figure \ref{fig:chrono_compare}. It is clear that figure~\ref{fig:chrono_original0} is not equal to figure~\ref{fig:chrono_compare}. It is especially promiment at the edges of the rescaled images. Here noticable artifacts are introduced in the image which are the result of information loss in the downsampling step. 
 
 \begin{figure}[!Hbt]
 \centering
