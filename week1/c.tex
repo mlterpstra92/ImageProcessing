@@ -14,18 +14,20 @@ We have implemented this operation in the following \textit{MATLAB} code:
 \matlabexternal{IPfilter.m}
 
 This function can convolute any image with a mask of any odd size.
+Since the edges have no neighbors, we're using zero padding for the boundaries.
+
 To test that it behaves correctly we have applied a Gaussian kernel (as in Table~\ref{tbl:gauss}) to an image, which should result in a blurred version of the image.
 Figures~\ref{fig:nonblur} and~\ref{fig:blur} illustrate the result.
 \begin{figure}[!htb]
  \centering
  \begin{subfigure}[b]{0.49\linewidth}
   \includegraphics[width=\textwidth]{notBlurred.eps} 
-  \caption{An image which was not blurred}
+  \caption{The original image \newline~\newline}
   \label{fig:nonblur} 
  \end{subfigure}
  \begin{subfigure}[b]{0.49\linewidth}
   \includegraphics[width=\textwidth]{blurred.eps}
-  \caption{The same image masked with a \(5\times5\) Gaussian kernel}
+  \caption{The same image masked with a \(5\times5\) Gaussian kernel. The edge of the image is a darker grey, since we're using zero padding.}
   \label{fig:blur}
  \end{subfigure}
  \caption{Gaussian mask applied to an image to demonstrate convolution}
@@ -85,9 +87,15 @@ The MATLAB code to determine these images is the following:
 \matlabexternal{IPgradient.m}
 
 \subsection*{c - Order of operations}
-We reasoned that generally there is a difference in the result when the order of the operations is concerned. We believe that this is due to the following reason. If a person would apply a sharpening filter first and subsequently a blur filter, pixels with a high gradient magnitude would first be highlighted and then slightly smoothed. However, if an blur filter is applied and then a sharpening filter, the overall gradient magnitude is lowered and therefore results in less highlights and deformations than would occur as in the former scenario. \newline
-Therefore we figure that there will be a difference in the output images depending of the order of the blur and sharpen operations. We'd also reckon that generally images are more aesthetically pleasing when an image is first blurred and then sharpened. \newline 
-We have tried to test this hypothesis by doing both operations and then comparing the results as figures~\ref{fig:angios} and figures~\ref{fig:blobs} illustrate. We can now conclude that there indeed is a difference between the images when the order of operations is changes. 
+We reasoned that generally there is a difference in the result, when the order of operations is different.
+This is due to the following reason:
+If one would apply a sharpening filter first and subsequently apply a blurring filter, pixels with a high gradient magnitude would first be highlighted and then slightly smoothed.
+However, if a blurring filter is applied and then a sharpening filter, the overall gradient magnitude is first decreased by the blurring filter, and therefore results in fewer highlights and deformations than would occur in the other order of operations.
+
+Therefore we figure that there will be a difference in the output images depending of the order of the blur and sharpen operations. We'd also reckon that generally images are more aesthetically pleasing when an image is first blurred and then sharpened.
+
+We have tried to test this hypothesis by doing both operations and then comparing the results as figures~\ref{fig:angios} and figures~\ref{fig:blobs} illustrate.
+We can now conclude that there is indeed a difference between the images when the order of operations changes. 
 \begin{figure}[!Htb]
  \centering
  \includegraphics{angios.eps}
