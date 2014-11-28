@@ -1,0 +1,18 @@
+characters = readDoubleImage('characters');
+imshow(characters);
+figure;
+imshow(IPftfilter(characters, 5));
+figure;
+imshow(IPftfilter(characters, 20));
+figure;
+imshow(IPftfilter(characters, 30));
+figure;
+imshow(IPftfilter(characters, 50));
+figure;
+imshow(IPftfilter(characters, 100));
+figure;
+imshow(IPftfilter(characters, 30, false));
+figure;
+imshow(IPftfilter(characters, 60, false));
+figure;
+imshow(IPftfilter(characters, 160, false));
