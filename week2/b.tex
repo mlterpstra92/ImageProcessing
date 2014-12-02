@@ -1,1 +1,8 @@
+%!TEX root = ./report.tex
 \exercise{Fourier spectrum}
+\subsection{Compute Fourier spectrum}
+To compute the Fourier spectrum, \textit{MATLAB}'s \texttt{fft2} and \texttt{fftshift} function have been used.
+First, the image is transformed to the Fourier domain, using \texttt{fft2}.
+Since \texttt{MATLAB} doesn't center the zero-frequency component, but has the zero-frequency component in the corners \cite{fftshift}, \texttt{fftshift} has been used to center the zero-frequency component.
+
+\clearpage
