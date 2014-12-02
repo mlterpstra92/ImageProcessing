@@ -3,7 +3,8 @@
 \setcounter{subsection}{0}
 
 Sometimes it is desirable to highlight high-frequency components in an image without eliminating the low-frequency components.
-One way to do this is by using a technique called highboost filtering. This technique works by first blurring the image, then subtracting the blurred image from the original image - the result of this operation is called the mask - and then adding the mask to the original image.
+One way to do this is by using a technique called highboost filtering.
+This technique works by first blurring the image, then subtracting the blurred image from the original image - the result of this operation is called the mask - and then adding the mask to the original image.
 Now edges are highlighted while retaining the same information about low-frequency components. 
 \subsection{Implementation}
 We have implemented the highboost filter in the function \texttt{IPhighboost}. We have set the blur mask to the same mask as in figure 3.32(a) as in the book, or as in table~\ref{tbl:mask}.
@@ -19,9 +20,9 @@ $\frac{1}{9}$
 \label{tbl:mask}
 \end{center}
 \end{table}
-The following code implements the highboost filter operation (with IPfilter the same function as in the previous lab assignment):
+The following code implements the highboost filter operation (with \texttt{IPfilter} the same function as in the previous lab assignment):
 \matlabexternal{IPhighboost.m}
-When tested on the image "dipxetext.tif" the output for $k = 4.5$ gives the result of image~\ref{fig:dipxe}.
+When tested on the image \texttt{dipxetext.tif} the output for $k = 4.5$ gives the result of image~\ref{fig:dipxe}.
 This is to our opinion the closest approximation of image 3.40(e) in the book.
 
 \subsection{Negative values}
