@@ -6,9 +6,11 @@ charactersSpectrum = 255 * charactersSpectrum ./ max(max(charactersSpectrum));
 
 subplot(1, 2, 1);
 imshow(characters);
+title('Original image');
 
 subplot(1, 2, 2);
 imshow(charactersSpectrum);
+title('Fourier spectrum');
 
 normalAvg = mean(mean(characters));
 fftAvg = IPaveragevalue(characters);
