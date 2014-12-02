@@ -18,4 +18,13 @@ We have loaded the image 'characters.tif' using the function \texttt{readDoubleI
  \label{fig:lowChars}
 \end{figure}
 \subsection{Gaussian highpass filter}
-We also have implemented the Gaussian highpass filter. This turns out to be the complement of the Gaussian lowpass filter and therefore we have implemented that function as such in the function \texttt{IPgaussian}
+We also have implemented the Gaussian highpass filter. This turns out to be the complement of the Gaussian lowpass filter and therefore we have implemented that function as such in the function \texttt{IPgaussian}. This makes sense because instead of passing low frequencies you want high frequencies and therefore low frequencies must be eliminated. The highpass filter can be used by calling \texttt{IPgaussian} and setting the flag \verb lowpass  to false.
+\subsection{Highpass characters}
+The same image is loaded here as in exercise 3c, but instead a highpass filter is applied to approximate image 4.56 in the book. To approximate these images we have used the cutoff frequencies 30, 60 and 100. We have chosen these cutoff frequencies as they are mentioned in the caption of image 4.56 and, as figure~\ref{fig:highChars} illustrate, they are duplicates of the image in the book.  
+\begin{figure}[h]
+ \centering
+ \includegraphics{characters_high_pass.eps}
+ \caption{Testing the highboost filter for several options of $k$. The image with $k = 4.5$, bottom-right, is the closest to image 3.40(e) in the book.}
+ \label{fig:highChars}
+\end{figure}
+\clearpage
