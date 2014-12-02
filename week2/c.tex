@@ -10,7 +10,7 @@ We have written a function \texttt{IPftfilter} that performs filtering in the fr
 \matlabexternal{IPftfilter.m}
 This function when called with just the image and the cutoff frequency $d_0$ the function will return a lowpass Gaussian filtered image with the size of the original image. It transforms the image to the frequency domain and subsequently does a point-wise multiplication with the Gaussian filter. After transforming it back to the spatial domain, the filtered image is obtained.
 \subsection{Lowpass characters}
-We have loaded the image 'characters.tif' using the function \texttt{readDoubleImage} and called it with the cutoff frequencies 5, 20, 30, 50 and 100. We believe with these values the images in Fig. 4.48 in the book are best approximated. The resulting images are in figure~\ref{fig:lowChars}
+We have loaded the image 'characters.tif' using the function \texttt{readDoubleImage} and called it with the cutoff frequencies 5, 20, 30, 50 and 100. We believe with these values the images in Fig. 4.48 in the book are best approximated. The resulting images are in figure~\ref{fig:lowChars}.
 \begin{figure}[h]
  \centering
  \includegraphics{characters_low_pass.eps}
