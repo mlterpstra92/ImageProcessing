@@ -6,7 +6,7 @@ function outImage = IPftfilter( image, d0, lowpass, P, Q)
     if nargin < 3
         lowpass = true;
     end
-    fftRepresentation = IPspectrum(image, P, Q);
+    fftRepresentation = IPspectrum(image);
     filter = zeros(P, Q);
     for u=1:P
         for v=1:Q

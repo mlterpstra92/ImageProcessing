@@ -10,3 +10,5 @@ for i=1:size(ks, 2)
         title(['k = ', num2str(ks(i))]);
     end
 end
+
+print(gcf, '-deps', 'dipxe');
