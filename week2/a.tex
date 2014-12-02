@@ -1,8 +1,10 @@
-%!TEX root = ./report.tex
+%!TEX root = report.tex
 \exercise{Highboost filtering}
 \setcounter{subsection}{0}
 
-Sometimes it is desirable to highlight high-frequency components in an image without eliminating the low-frequency components. One way to do this is by using a technique called highboost filtering. This technique works by first blurring the image, then subtracting the blurred image from the original image - the result of this operation is called the mask - and then adding the mask to the original image. Now edges are highlighted while retaining the same information about low-frequency components. 
+Sometimes it is desirable to highlight high-frequency components in an image without eliminating the low-frequency components.
+One way to do this is by using a technique called highboost filtering. This technique works by first blurring the image, then subtracting the blurred image from the original image - the result of this operation is called the mask - and then adding the mask to the original image.
+Now edges are highlighted while retaining the same information about low-frequency components. 
 \subsection{Implementation}
 We have implemented the highboost filter in the function \texttt{IPhighboost}. We have set the blur mask to the same mask as in figure 3.32(a) as in the book, or as in table~\ref{tbl:mask}.
 \begin{table}[!htb]
@@ -19,10 +21,13 @@ $\frac{1}{9}$
 \end{table}
 The following code implements the highboost filter operation (with IPfilter the same function as in the previous lab assignment):
 \matlabexternal{IPhighboost.m}
-When tested on the image "dipxetext.tif" the output for $k = 4.5$ gives the result of image~\ref{fig:dipxe}. This is to our opinion the closest approximation of image 3.40(e) in the book.
+When tested on the image "dipxetext.tif" the output for $k = 4.5$ gives the result of image~\ref{fig:dipxe}.
+This is to our opinion the closest approximation of image 3.40(e) in the book.
 
 \subsection{Negative values}
-If an image \verb f  contains only positive values it is possible that the output image \verb g  contains negative values. Consider the image described in table~\ref{tbl:inImage}. This image clearly contains only positive values. However, if is image is processed using \texttt{IPhighboost} with $k \geq 0.13$ the output image \verb g  will contain a negative value as table~\ref{tbl:outImage} illustrates. We presume the minimal value of $k$ where negative values occur in the output image has a relation with the minimal value that occurs in the input image but we could not find strong evidence what this relation is. 
+If an image \verb f  contains only positive values it is possible that the output image \verb g  contains negative values.
+Consider the image described in table~\ref{tbl:inImage}. This image clearly contains only positive values. However, if is image is processed using \texttt{IPhighboost} with $k \geq 0.13$ the output image \verb g  will contain a negative value as table~\ref{tbl:outImage} illustrates.
+We presume the minimal value of $k$ where negative values occur in the output image has a relation with the minimal value that occurs in the input image but we could not find strong evidence what this relation is. 
 
 \begin{figure}[h]
  \centering
