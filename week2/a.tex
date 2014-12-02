@@ -4,8 +4,11 @@
 
 Sometimes it is desirable to highlight high-frequency components in an image without eliminating the low-frequency components.
 One way to do this is by using a technique called highboost filtering.
-This technique works by first blurring the image, then subtracting the blurred image from the original image - the result of this operation is called the mask - and then adding the mask to the original image.
-Now edges are highlighted while retaining the same information about low-frequency components. 
+This technique works by first blurring the image, then subtracting the blurred image from the original image.
+The result of this operation is called the mask.
+Finally, highboost filtered image can be retrieved by adding the mask to the original image.
+
+As a result of the highboost filter, edges are sharper, while retaining the most information about low-frequency components. 
 \subsection{Implementation}
 We have implemented the highboost filter in the function \texttt{IPhighboost}. We have set the blur mask to the same mask as in figure 3.32(a) as in the book, or as in table~\ref{tbl:mask}.
 \begin{table}[!htb]
