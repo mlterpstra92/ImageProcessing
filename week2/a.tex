@@ -8,29 +8,38 @@ This technique works by first blurring the image, then subtracting the blurred i
 The result of this operation is called the mask.
 Finally, highboost filtered image can be retrieved by adding the mask to the original image.
 
+The entire highboost filter operation is nicely summed up in the following formula:
+\[ g(x, y) = f(x, y) +  k(f(x, y) - w \star f(x, y)) \text{,} \]
+where \(w\) is a smoothing filter, described below.
+
 As a result of the highboost filter, edges are sharper, while retaining the most information about low-frequency components. 
 \subsection{Implementation}
-We have implemented the highboost filter in the function \texttt{IPhighboost}. We have set the blur mask to the same mask as in figure 3.32(a) as in the book, or as in table~\ref{tbl:mask}.
+We have implemented the highboost filter in the function \texttt{IPhighboost}.
+We have set the blur mask to the same mask as in \cite[Figure 3.32(a)]{gonzalez2002digital} which is also shown in Table~\ref{tbl:mask}.
 \begin{table}[!htb]
-\begin{center}
-$\frac{1}{9}$
-\begin{tabular}{|c|c|c|}\hline
-1 & 1 & 1 \\ \hline
-1 & 1 & 1 \\ \hline
-1 & 1 & 1 \\ \hline
-\end{tabular}
-\caption{The gaussian mask used for blurring}
-\label{tbl:mask}
-\end{center}
+  \begin{center}
+    $\frac{1}{9}$
+    \begin{tabular}{|c|c|c|}\hline
+      1 & 1 & 1 \\ \hline
+      1 & 1 & 1 \\ \hline
+      1 & 1 & 1 \\ \hline
+    \end{tabular}
+    \caption{The gaussian mask used for blurring}
+    \label{tbl:mask}
+  \end{center}
 \end{table}
-The following code implements the highboost filter operation (with \texttt{IPfilter} the same function as in the previous lab assignment):
+
+The following code implements the highboost filter operation\footnote{This function uses \texttt{IPfilter}, which is the same function as in the previous lab assignment. The source code for this is also included in the archive for this lab assignment.}:
 \matlabexternal{IPhighboost.m}
-When tested on the image \texttt{dipxetext.tif} the output for $k = 4.5$ gives the result of image~\ref{fig:dipxe}.
+When tested on the image \texttt{dipxetext.tif} the output for $k = 4.5$ gives the result of Figure~\ref{fig:dipxe}.
 This is to our opinion the closest approximation of image 3.40(e) in the book.
 
 \subsection{Negative values}
-If an image \verb f  contains only positive values it is possible that the output image \verb g  contains negative values.
-Consider the image described in table~\ref{tbl:inImage}. This image clearly contains only positive values. However, if is image is processed using \texttt{IPhighboost} with $k \geq 0.13$ the output image \verb g  will contain a negative value as table~\ref{tbl:outImage} illustrates.
+If an image \(f\) contains only positive values it is possible that the output image \(g\) contains negative values.
+Consider the image depicted in Table~\ref{tbl:inImage}.
+This image evidently contains only positive values.
+However, if is image is processed using \texttt{IPhighboost} with $k \geq 0.13$ the output image \verb g  will contain a negative value as table~\ref{tbl:outImage} illustrates.
+
 We presume the minimal value of $k$ where negative values occur in the output image has a relation with the minimal value that occurs in the input image but we could not find strong evidence what this relation is. 
 
 \begin{figure}[h]
