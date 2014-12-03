@@ -11,7 +11,7 @@ for i=0:size(d0s_lowpass, 2)
     else
         d0 = d0s_lowpass(i);
         subplot(2, 3, i + 1);
-        subimage(IPftfilter(characters, d0, true));
+        subimage(IPftfilter(characters, d0, 'GLPF'));
         axis off;
         title(['D_0 = ', num2str(d0)]);
     end
@@ -30,7 +30,7 @@ for i=0:size(d0s_highpass, 2)
     else
         d0 = d0s_highpass(i);
         subplot(2, 2, i + 1);
-        subimage(IPftfilter(characters, d0, false));
+        subimage(IPftfilter(characters, d0, 'GHPF'));
         axis off;
         title(['D_0 = ', num2str(d0)]);
     end
