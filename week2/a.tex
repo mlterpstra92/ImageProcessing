@@ -56,11 +56,14 @@ The value of that pixel after the highboost filter will be negative if:
     g(x_0, y_0) &< 0 \\
     f(x_0, y_0) +  k(f(x_0, y_0) - w \star f(x_0, y_0)) &< 0 \\
     k(f(x_0, y_0) - w \star f(x_0, y_0)) &< -f(x_0, y_0) \\
-    k &< \frac{f(x_0, y_0)}{(w \star f(x_0, y_0) - f(x_0, y_0))}
+    k &< \frac{f(x_0, y_0)}{w \star f(x_0, y_0) - f(x_0, y_0)}
   \end{split}
 \end{equation}
 
-When we compute the critical \(k\) for our example image in Table~\ref{tbl:inImage}, the critical value \(k = 0.125\) is retrieved.
+That is, the pixel \((x_0, y_0)\) will be zero at the critical value:
+\[k_0 = \frac{f(x_0, y_0)}{w \star f(x_0, y_0) - f(x_0, y_0)}\]
+
+When we compute the critical \(k\) for our example image in Table~\ref{tbl:inImage}, the value \(k_0 = 0.125\) is retrieved.
 
 \begin{table}[h]
   \begin{minipage}[b]{.2\linewidth}
@@ -92,10 +95,10 @@ When we compute the critical \(k\) for our example image in Table~\ref{tbl:inIma
       1.0542 & -0.0000 & 1.0542 \\ \hline
       1.0819 & 1.0542 & 1.0819 \\ \hline
     \end{tabular}
-    \subcaption{Output image (\(k=0.125\))}
+    \subcaption{Output image (\(k=k_0=0.125\))}
     \label{tbl:criticalImage}
   \end{minipage}
-  \caption{The in- and output images for \texttt{IPhighboost}. It is visible that the output image contains negative values, and that the regarded output pixel is zero when using the critical \(k=0.125\).}
+  \caption{The in- and output images for \texttt{IPhighboost}. Clearly, (b) shows that the regarded pixel is negative for \(k=0.5\). (c) shows that the regarded pixel is exactly zero for \(k=k_0\).}
   \hfill
 \end{table}
 \clearpage
