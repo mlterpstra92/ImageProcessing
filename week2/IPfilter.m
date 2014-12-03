@@ -1,5 +1,8 @@
-function convoluted = IPfilter(image, mask)
+function convoluted = IPfilter(image, mask, timeIt)
     %IPFILTER Convolutes image with kernel mask
+    if nargin < 3
+        timeIt = false;
+    end
     [a, b] = (size(mask));
     a = floor(a / 2);
     b = floor(b / 2);
@@ -18,8 +21,10 @@ function convoluted = IPfilter(image, mask)
         end
     end
     elapsedTime = toc;
-    disp(['Total execution time: ', num2str(elapsedTime)]);
-    disp(['Convolution time per pixel: ', num2str(elapsedTime / (rows * cols))]);
+    if timeIt
+        disp(['Total execution time: ', num2str(elapsedTime)]);
+        disp(['Convolution time per pixel: ', num2str(elapsedTime / (rows * cols))]);
+    end
     % Remove padding
     convoluted = convoluted(1+a:end - a, 1 + b:end - b);
 end
