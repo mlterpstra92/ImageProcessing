@@ -34,9 +34,9 @@ The following code implements the highboost filter operation\footnote{This funct
 When applying this function to \texttt{dipxetext.tif}, using multiple values for \(k\), the result in Figure~\ref{fig:dipxe} is retrieved.
 The last image, with \(k=4.5\) is, in our opinion, the closest approximation to \cite[Figure 3.40(e)]{gonzalez2002digital}.
 
-\begin{figure}[h]
+\begin{figure}[ht]
  \centering
- \includegraphics{dipxe.eps}
+ \includegraphics[width=\linewidth]{dipxe.eps}
  \caption{Testing the highboost filter for several options of $k$. The image with $k = 4.5$, bottom-right, is the closest to image 3.40(e) in the book.}
  \label{fig:dipxe}
 \end{figure}
@@ -65,7 +65,7 @@ That is, the pixel \((x_0, y_0)\) will be zero at the critical value:
 
 When we compute the critical \(k\) for our example image in Table~\ref{tbl:inImage}, the value \(k_0 = 0.125\) is retrieved.
 
-\begin{table}[h]
+\begin{table}[ht]
   \begin{minipage}[b]{.2\linewidth}
     \centering
     \begin{tabular}{|c|c|c|}\hline

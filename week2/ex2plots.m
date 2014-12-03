@@ -7,12 +7,16 @@ charactersSpectrum = 255 * charactersSpectrum ./ max(max(charactersSpectrum));
 subplot(1, 2, 1);
 subimage(characters);
 title('Original image');
-axis off;
+set(gca, 'XTick', [], 'YTick', [],'XAxisLocation','top');
+xlabel('y');
+ylabel('x');
 
 subplot(1, 2, 2);
 subimage(charactersSpectrum);
 title('Fourier spectrum');
-axis off;
+set(gca, 'XTick', [], 'YTick', [],'XAxisLocation','top');
+xlabel('v');
+ylabel('u');
 
 normalAvg = mean(mean(characters));
 fftAvg = IPaveragevalue(characters);

@@ -1,7 +1,7 @@
 %!TEX root = report.tex
 \exercise{Fourier spectrum}
 \setcounter{subsection}{0}
-\subsection{Compute Fourier spectrum}
+\subsection{Computing the Fourier spectrum}
 To compute the Fourier spectrum, \textit{MATLAB}'s \texttt{fft2} and \texttt{fftshift} function have been used.
 First, the image is transformed to the Fourier domain, using \texttt{fft2}.
 Since \texttt{MATLAB} doesn't center the zero-frequency component, but has the zero-frequency component in the corners \cite{fftshift}, \texttt{fftshift} has been used to center the zero-frequency component.
@@ -9,16 +9,22 @@ Since \texttt{MATLAB} doesn't center the zero-frequency component, but has the z
 The following function has been used to compute the shifted Fourier spectrum of an image:
 \matlabexternal{IPspectrum.m}
 
-\subsection{Display Fourier spectrum}
+\subsection{Displaying the Fourier spectrum}
+At this point we're not interested in the complex properties of the Fourier domain, but just in the absolute value, so that has been plotted in Figure~\ref{fig:characters_spectrum}.
+
 \begin{figure}[h]
  \centering
- \includegraphics{characters_spectrum.eps}
- \caption{The input image, and the absolute value of its spectrum. On the \(u\)-axis, there are multiple peaks. This means that there are multiple periodic signals in the \(x\)-direction in the spatial}
+ \includegraphics[width=\linewidth]{characters_spectrum.eps}
+ \caption{
+ 	The input image and the absolute value of its Fourier spectrum.
+ 	On the \(v\)-axis, there are multiple peaks, this means that there are multiple periodic signals in the \(y\)-direction of the spatial domain.
+ 	These correspond to the vertical bars in the lower part of the image and the squares in the higher part of the image.
+ 	Looking at the original image, the \(x\) direction doesn't seem very periodic, and the spectrum confirms this (it has no peaks on the \(u\)-axis).}
  \label{fig:characters_spectrum}
 \end{figure}
 
 \subsection{Compute average value}
-To compute the average value of an image, one could naively sum all pixel values in the spatial domain and divide by the number of pixels.
+To determine the average value of an image, one could naively sum all pixel values in the spatial domain and divide by the number of pixels.
 However, if the image is already available in the Fourier domain, it is more convenient to look at \(F(0, 0)\), i.e., the zero-frequency component.
 
 For the zero-frequenct component, the following holds:
@@ -31,4 +37,8 @@ F(0, 0) & = \sum_{x=0}^{M-1}\sum_{y=0}^{N-1}{f(x, y)\mathrm{e}^{0}} \\
 which is the same as the sum of all pixels in the spatial domain.
 Dividing that by the number of pixels yields the average pixel value of the image:
 \[\bar{f}(x, y) = \frac{1}{MN}F(0, 0)\]
+
+Applying this method yields an average value of \texttt{0.813}.
+Naively summing the pixel values and dividing by the number of pixels yields the same result.
+
 \clearpage
