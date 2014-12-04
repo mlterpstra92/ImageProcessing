@@ -45,7 +45,7 @@ The last image, with \(k=4.5\) is, in our opinion, the closest approximation to 
 If an image \(f\) contains only positive values it is possible that the output image \(g\) contains negative values.
 Consider the image depicted in Table~\ref{tbl:inImage}.
 This image evidently contains only positive values.
-However, if this image is processed using \texttt{IPhighboost} with \(k \geq 0.13\) the output image \(g\) will contain a negative value as table~\ref{tbl:outImage} illustrates.
+However, if this image is processed using \texttt{IPhighboost} with \(k > 0.125\) the output image \(g\) will contain a negative value as table~\ref{tbl:outImage} illustrates.
 
 A negative value occurs most notably when a pixel with a small value is surrounded by pixels with large values.
 Consider a pixel in \(f\) at location \(( x_0, y_0 )\).
