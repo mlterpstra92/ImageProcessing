@@ -20,12 +20,14 @@
 % dir_v
 % dir_d
 image = readDoubleImage('characters');
-v = zeros(size(image));
-h = v;
-d = v;
-for i=1:size(image, 2)
-    v(:, i) = IPdwt(image(:, i));
-end
-for i=1:size(image, 1)
-    h(i, :) = IPdwt(image(i, :));
-end
+haarMatrix = generateHaarMatrix(size(image, 1));
+imshow(haarMatrix * image * haarMatrix', [0 255]);
+% v = zeros(size(image));
+% h = v;
+% d = v;
+% for i=1:size(image, 2)
+%     v(:, i) = IPdwt(image(:, i));
+% end
+% for i=1:size(image, 1)
+%     h(i, :) = IPdwt(image(i, :));
+% end
