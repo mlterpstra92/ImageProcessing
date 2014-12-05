@@ -3,5 +3,5 @@ function res = IPidwt( haarFactors )
         haarFactors = haarFactors';
     end
     haarMatrix = generateHaarMatrix(size(haarFactors, 1));
-    res = haarMatrix\haarFactors;
+    res = haarMatrix \ haarFactors;
 end

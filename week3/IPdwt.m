@@ -4,6 +4,6 @@ function res = IPdwt( fVector )
     end
                
     haarMatrix = generateHaarMatrix(size(fVector, 1));
-
-    res = haarMatrix'\fVector;
+    
+    res = haarMatrix * fVector;
 end
