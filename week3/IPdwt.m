@@ -3,7 +3,7 @@ function res = IPdwt( fVector, j)
     assert(bitand(n, n-1) == 0);
     evenElements = fVector(1:2:end);
     oddElements = fVector(2:2:end);
-    factor = n / 2;
+    factor = j;
     
     I = (evenElements + oddElements) / sqrt(factor);
     D = (evenElements - oddElements) / sqrt(factor);
