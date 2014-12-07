@@ -1,6 +1,6 @@
 function psi = haar_wavelet(x, j, k)
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes here
+%HAAR_WAVELET Returns the Haar wavelet function on the domain x, with
+%   parameters j and k.
     if nargin > 1
         if nargin < 3
             k = 0;

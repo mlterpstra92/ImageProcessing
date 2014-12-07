@@ -1,6 +1,6 @@
 function phi = haar_scaling(x, j, k)
-%HAAR_BASIS Summary of this function goes here
-%   Detailed explanation goes here
+%HAAR_BASIS Returns the Haar scaling function on the domain x, with
+%   parameters j and k.
     if nargin > 1
         if nargin < 3
             k = 0;
