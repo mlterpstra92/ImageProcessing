@@ -9,6 +9,6 @@ function phi = haar_scaling(x, j, k)
         phi = 2^(j / 2) * haar_scaling(2^j * x - k);
         return;
     end
-    phi = x >= 0 & x < 1;
+    % Conversion to double since we want numeric values, not boolean
+    phi = double(x >= 0 & x < 1);
 end
-
