@@ -1,4 +1,4 @@
-function [a, d] = decompose_2d(image, factor, along)
+function [a, d] = decompose_2d(image, along)
     [M, N] = size(image);
     if strcmp(along, 'columns') == 1
         newSize = [M, N / 2];
@@ -21,6 +21,6 @@ function [a, d] = decompose_2d(image, factor, along)
             end
         end
     end
-    a = (newImageEven + newImageOdd) / factor;
-    d = (newImageEven - newImageOdd) / factor;
+    a = (newImageEven + newImageOdd) / sqrt(2);
+    d = (newImageEven - newImageOdd) / sqrt(2);
 end
