@@ -1,33 +1,20 @@
-% haar_x = generateHaarMatrix(4);
-% haar_y = generateHaarMatrix(4);
-% 
-% seperableScaling = haar_x(1, :)' * haar_y(1, :);
-% dir_h(:, :, 1) = haar_x(2,:)' * haar_y(1, :);
-% dir_h(:, :, 2) = haar_x(3,:)' * haar_y(1, :);
-% dir_h(:, :, 3) = haar_x(4,:)' * haar_y(1, :);
-% 
-% dir_v(:, :, 1) = haar_x(1,:)' * haar_y(2, :);
-% dir_v(:, :, 2) = haar_x(1,:)' * haar_y(3, :);
-% dir_v(:, :, 3) = haar_x(1,:)' * haar_y(4, :);
-% 
-% dir_d(:, :, 1) = haar_x(2,:)' * haar_y(2, :);
-% dir_d(:, :, 2) = haar_x(3,:)' * haar_y(3, :);
-% dir_d(:, :, 3) = haar_x(4,:)' * haar_y(4, :);
-% 
-% 
-% W = dir_h \ image;
+j = 4;
 
-% dir_v
-% dir_d
-image = readDoubleImage('characters');
-haarMatrix = generateHaarMatrix(size(image, 1));
-imshow(haarMatrix * image * haarMatrix', [0 255]);
-% v = zeros(size(image));
-% h = v;
-% d = v;
-% for i=1:size(image, 2)
-%     v(:, i) = IPdwt(image(:, i));
-% end
-% for i=1:size(image, 1)
-%     h(i, :) = IPdwt(image(i, :));
-% end
+image = readDoubleImage('vase');
+figure;
+imshow(image, [0 255]);
+
+imageDWT = IPdwt2(image, j);
+[M, N] = size(imageDWT);
+
+% Rescale the parts with details
+addition = repmat(128, size(imageDWT));
+addition(1:M / (2^j),1:N / (2^j)) = zeros(M/(2^j), N/(2^j));
+rescaledImageDWT = imageDWT + addition;
+
+figure;
+imshow(rescaledImageDWT, [0 255]);
+
+imageRetrieved = IPidwt2(imageDWT, j);
+figure;
+imshow(imageRetrieved, [0 255]);

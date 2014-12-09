@@ -1,21 +1,32 @@
-function outImage = IPidwt2(image, j)
+function finalImage = IPidwt2(image, j)
     if j == 0
-        outImage = image;
+        % Just return the input image, since j=0.
+        finalImage = image;
     else
         [M, N] = size(image);
-        xWidth = M / (2^j);
-        yWidth = N / (2^j);
-        Wa = image(1:xWidth         , 1:yWidth);
-        Wh = image(xWidth+1:2*xWidth, 1:yWidth);
-        Wv = image(1:xWidth         , yWidth+1:2*yWidth);
-        Wd = image(xWidth+1:2*xWidth, yWidth+1:2*yWidth);
-        ding1 = compose_2d(Wa, Wh, 'rows');
-        ding2 = compose_2d(Wv, Wd, 'rows');
-        imshow(ding1, [0 255]); figure;
-        imshow(ding2, [0 255]); figure;
-        image(1:xWidth * 2, 1:yWidth * 2) =  compose_2d(ding1, ding2, 'columns');
-
-        outImage = IPidwt2(image * 2, j - 1);
+        height = M / (2^j);
+        width = N / (2^j);
+        
+        % Retrieve the current approximation, and the lowest level details
+        % in all three directions.
+        Wa = image(1:height           , 1:width);
+        Wh = image(height + 1:2*height, 1:width);
+        Wv = image(1:height           , width+1:2*width);
+        Wd = image(height + 1:2*height, width+1:2*width);
+        
+        % Compose larger approximations in the vertical direction (more
+        % rows).
+        component1 = compose_2d(Wa, Wv, 'rows');
+        component2 = compose_2d(Wh, Wd, 'rows');
+        
+        % Combine the two components and compose larger approximation in
+        % the horizontal direction (more columns). Write the result in the
+        % appropriate place in 'image'.
+        image(1:height * 2, 1:width * 2) =  compose_2d(component1, component2, 'columns');
+        
+        % Pass the image with the higher level approximation to a deeper
+        % recursion.
+        finalImage = IPidwt2(image, j - 1);
     end
 end
 

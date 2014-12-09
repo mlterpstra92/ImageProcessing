@@ -21,6 +21,6 @@ function [a, d] = decompose_2d(image, along)
             end
         end
     end
-    a = (newImageEven + newImageOdd) / sqrt(2);
-    d = (newImageEven - newImageOdd) / sqrt(2);
+    a = (newImageEven + newImageOdd) / 2;
+    d = (newImageEven - newImageOdd) / 2;
 end
