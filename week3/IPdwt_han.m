@@ -1,7 +1,12 @@
-function dwt_rep = IPdwt_han(f)
-%DWT_WAVELET_ARRAY Transforms the spatial representation to the DWT representation.
-    M = size(f, 2);
-    J = log2(M);
+function dwt_rep = IPdwt_han(f, J)
+%DWT_WAVELET_ARRAY Transforms the spatial representation to the DWT representation
+    if nargin < 2
+        M = size(f, 2);
+        J = log2(M); 
+    else
+        M = 2 ^ J;
+    end
+    
     j_0 = 0;
     
     % Evenly placed points along the x-axis, in the middle of the sample
