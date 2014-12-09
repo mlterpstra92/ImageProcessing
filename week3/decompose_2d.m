@@ -1,26 +1,20 @@
-function [a, d] = decompose_2d(image, along)
-    [M, N] = size(image);
+function [ave, det] = decompose_2d(image, along)
+
+    % Retrieve the even and odd pixels of the image, along the requested
+    % direction.
     if strcmp(along, 'columns') == 1
-        newSize = [M, N / 2];
-        newImageEven = zeros(newSize);
-        newImageOdd = zeros(newSize);
-        for i=1:newSize(1)
-            for j=1:newSize(2)
-                newImageEven(i, j) = image(i, j * 2);
-                newImageOdd(i, j) = image(i, j * 2 - 1);
-            end
-        end
+        newImageEven = image(:, 2:2:end);
+        newImageOdd = image(:, 1:2:end);
     else
-        newSize = [M / 2, N];
-        newImageEven = zeros(newSize);
-        newImageOdd = zeros(newSize);
-        for i=1:newSize(1)
-            for j=1:newSize(2)
-                newImageEven(i, j) = image(i * 2, j);
-                newImageOdd(i, j) = image(i * 2 - 1, j);
-            end
-        end
+        newImageEven = image(2:2:end, :);
+        newImageOdd = image(1:2:end, :);
     end
-    a = (newImageEven + newImageOdd) / 2;
-    d = (newImageEven - newImageOdd) / 2;
+    
+    % Retrieve the average values by taking the average of all odd/even
+    % pairs.
+    ave = (newImageEven + newImageOdd) / 2;
+    
+    % Retrieve the detailing information by taking the difference of all
+    % odd/even pairs.
+    det = (newImageEven - newImageOdd) / 2;
 end
