@@ -2,14 +2,20 @@ f = [1, 4, -3, 0];
 disp('f:');
 disp(f);
 
+% Compute the DWT representation of f, using J = 1.
+dwt_representation_f_1 = IPdwt(f, 1);
+
+disp('DWT(f, J=1):');
+disp(dwt_representation_f_1);
+
 % Compute the DWT representation of f, using J = 2.
-dwt_representation_f = IPdwt(f, 2);
+dwt_representation_f_2 = IPdwt(f, 2);
 
 disp('DWT(f, J=2):');
-disp(dwt_representation_f);
+disp(dwt_representation_f_2);
 
 % Compute the inverse DWT of f's DWT
-f_restored = IPidwt(dwt_representation_f, 2);
+f_restored = IPidwt(dwt_representation_f_2, 2);
 
 disp('IDWT(DWT(f, J=2), J=2):');
 disp(f_restored);
