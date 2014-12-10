@@ -13,9 +13,7 @@ imageDWT = IPdwt2(image, j);
 [M, N] = size(imageDWT);
 
 % Rescale the parts with details, so they're more visible.
-addition = repmat(128, size(imageDWT));
-addition(1:M / (2^j),1:N / (2^j)) = zeros(M/(2^j), N/(2^j));
-rescaledImageDWT = imageDWT + addition;
+rescaledImageDWT = IPdwt2scale(imageDWT, M / (2^j));
 
 figure;
 imshow(rescaledImageDWT, [0 255]);
