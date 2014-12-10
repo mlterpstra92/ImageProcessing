@@ -1,5 +1,5 @@
-function res = compose(a, d)
-    res = zeros(1, 2 * length(a));
-    res(1:2:end) = (a + d);
-    res(2:2:end) = (a - d);
+function approximation = compose(a, d)
+    approximation = zeros(1, 2 * length(a));
+    approximation(1:2:end) = (a + d);
+    approximation(2:2:end) = (a - d);
 end

@@ -1,5 +1,6 @@
 function approximation = IPidwt(dwt_rep, J)
     if J == 0
+        % We're done. J is equal to 0, so no more steps have to be taken.
         approximation = dwt_rep;
     else
         n = length(dwt_rep);
@@ -9,7 +10,7 @@ function approximation = IPidwt(dwt_rep, J)
         % and are located next to the approximation.
         width = n/(2^J);
         a = dwt_rep(1:width);
-        d = dwt_rep(n/(2^J) + 1: 2 * width);
+        d = dwt_rep(width + 1:2 * width);
         
         % Compute the new approximation by enriching the current
         % approximation with details.
@@ -19,7 +20,7 @@ function approximation = IPidwt(dwt_rep, J)
         % coarser approximation and details were.
         dwt_rep(1:2*width) = newApproximation;
         
-        % Compute the more detailed approximations in the recursion.
+        % Compute the more detailed approximation(s) in the recursion.
         approximation = IPidwt(dwt_rep, J - 1);
     end
 end
