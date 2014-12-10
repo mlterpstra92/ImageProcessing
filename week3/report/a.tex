@@ -1,9 +1,46 @@
 %!TEX root = report.tex
 \exercise{1D wavelet transforms}
-\subsection{\texorpdfstring{1D \(J\)-scale DWT}{1D J-scale DWT}}
+A 1-dimensional `averaging-and-differencing' approach has been used to implement the discrete wavelet transform (DWT) using Haar wavelets.
 
+\subsection{\texorpdfstring{1D \(J\)-scale DWT}{1D J-scale DWT}}
+A 1-dimensional image can be transformed to its \emph{discrete Haar wavelet transform} representation by taking the average and difference of all pairs of neighbouring pixels.
+The averages result in an approximation of the image, and the differences result in the details of the image.
+The computed approximation can be transformed further to create an even coarser level of approximation, accompanying courser details.
+
+To compute the new approximations and details, the following function has been implemented:
+\matlabexternal{../decompose.m}
+It is easily understood that the output variable \texttt{a} will be an array containing the averages of all neighbouring pairs, and \texttt{d} an array containing the differences divided by two, of all neighbouring pairs.
+
+Note that we divided by 2 here, instead of dividing by \(\sqrt{2}\) as the exercise said.
+We felt that this was a better decision because of the following two reasons:
+\begin{itemize}
+  \item It is more intuitive to store the average and half of the difference, since the finer levels of the images can then intuitively be restored by taking the average and \emph{adding} half of the difference, and taking the average and \emph{subtracting} half of the difference.
+
+  Otherwise, we also had to take into account a factor of \(\sqrt{2}\) when doing the inverse operation, which we don't have to do now.
+  \item Not using \(\sqrt{2}\) avoids rounding errors when dealing with integer images.
+\end{itemize}
+
+The \texttt{decompose} function is utilized by the \texttt{IPdwt} function, which computed the \texttt{J}-scale DWT of an input image \texttt{approximation}\footnote{The input image is called \texttt{approximation}, because it's a recursive function. In a deeper recursion, the input image is an approximation, so it's easier to understand this way.}:
+\matlabexternal{../IPdwt.m}
+The function has been implemented as a recursive function because of the recursive nature of the wavelet transform.
+
+Applying this function to the example 1D image of length 4 yields a different result as in the exercise specification.
+This is, of course, the result of dividing by \(2\) instead of \(\sqrt{2}\).
+The benefit of this is that rational pixel values remain rational, and this causes the arithmetic to be exact.
+The output for \(J=1\) and \(J=2\) was the following:
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+    f:
+         1     4    -3     0
+
+    DWT(f, J=1):
+        2.5000   -1.5000   -1.5000   -1.5000
+
+    DWT(f, J=2):
+        0.5000    2.0000   -1.5000   -1.5000
+\end{lstlisting}
+\(J=1\) is `off' by a factor \(\sqrt{2}\) and \(J=2\) is `off' by a factor \(2\), which makes sense, since the DWT is applied once for each level.
 
 \subsection{\texorpdfstring{1D inverse \(J\)-scale DWT}{1D inverse J-scale DWT}}
-
+The computed approximations, combined with their accompanying details, can be used to retrieve a finer level of approximation, and ultimately, the original image can be restored.
 
 \clearpage
