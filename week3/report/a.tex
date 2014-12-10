@@ -27,7 +27,7 @@ The function has been implemented as a recursive function because of the recursi
 Applying this function to the example 1D image of length 4 yields a different result as in the exercise specification.
 This is, of course, the result of dividing by \(2\) instead of \(\sqrt{2}\).
 The benefit of this is that rational pixel values remain rational, and this causes the arithmetic to be exact.
-The output for \(J=1\) and \(J=2\) was the following:
+The results for \(J=1\) and \(J=2\) are as follows:
 \begin{lstlisting}[basicstyle=\ttfamily\small]
     f:
          1     4    -3     0
@@ -41,6 +41,34 @@ The output for \(J=1\) and \(J=2\) was the following:
 \(J=1\) is `off' by a factor \(\sqrt{2}\) and \(J=2\) is `off' by a factor \(2\), which makes sense, since the DWT is applied once for each level.
 
 \subsection{\texorpdfstring{1D inverse \(J\)-scale DWT}{1D inverse J-scale DWT}}
-The computed approximations, combined with their accompanying details, can be used to retrieve a finer level of approximation, and ultimately, the original image can be restored.
+The approximations computed in the previous section, along with their accompanying details, can be used to go back to a finer level of approximation, and ultimately, the original image can be restored.
+
+Doing this is straightforward.
+Simply take the current approximation pixel and its accompanying detail pixel, and retrieve two pixels of the finer approximation:
+One by adding the detail pixel to the approximation, and the other by subtracting the detail pixel from the approximation.
+
+This step has been implemented in the \texttt{compose} function:
+\matlabexternal{../compose.m}
+The variable \texttt{approximation} is now twice as large as the previous approximation (called `\texttt{a}'), and uses the pixel information from the detail pixels (the variable `\texttt{d}') 
+
+For retrieving the inverse \texttt{J}-scale DWT of an image \texttt{dwt\_rep}, represented in the DWT domain, the function \texttt{IPidwt} utilizes the \texttt{compose} function:
+\matlabexternal{../IPidwt.m}
+The crucial part is in line 21, where a part of the current representation is overwritten to contain the new approximation, so that it can be used in the deeper recursion.
+
+The \texttt{IPidwt} function has been applied to the outcome of the \texttt{IPdwt} function.
+It is expected that this would restore the original image\footnote{As long as the same value for \texttt{J} has been used.}, and this is confirmed by the result:
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+    f:
+         1     4    -3     0
+
+    DWT(f, J=2):
+        0.5000    2.0000   -1.5000   -1.5000
+
+    IDWT(DWT(f, J=2), J=2):
+         1     4    -3     0
+\end{lstlisting}
+
+The transformation, and the inverse transformation, also work for larger arrays.\footnote{Provided that their lengths are \(2^n\), \(n \in \mathbb{N}\).}
+The script that demonstrates this, \texttt{one\_dim\_script.m}, is included in the \texttt{.zip}-file.
 
 \clearpage
