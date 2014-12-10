@@ -1,7 +1,7 @@
 % We're using this many levels in the pyramid.
 % This should not be higher than log2(N) where N is the size of the
 % (square) image, otherwise unexpected things will happen.
-j = 9;
+j = 3;
 
 % Read the image.
 image = readDoubleImage('vase');

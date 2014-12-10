@@ -1,4 +1,4 @@
-function finalImage = IPdwt2(image, j, finalImage)
+function finalImage = IPdwt2(image, J, finalImage)
     if nargin < 3
         % This only happens when the function is called by the user:
         % Initialize the final image as a matrix of zeroes.
@@ -21,13 +21,13 @@ function finalImage = IPdwt2(image, j, finalImage)
     finalImage(1:M/2, N/2+1:N) = Wh;
     finalImage(M/2+1:M, N/2+1:N) = Wd;
     
-    if j == 1
+    if J == 1
         % Set the lowest scale approximation to the upper-left corner.
         % The final image will be returned, since we're done now.
         finalImage(1:M/2, 1:N/2) = Wa;
     else
         % Go further in the recursion, now using the new approximation as
         % the input image.
-        finalImage = IPdwt2(Wa, j - 1, finalImage);
+        finalImage = IPdwt2(Wa, J - 1, finalImage);
     end
 end

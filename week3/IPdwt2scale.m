@@ -29,13 +29,14 @@ function image = IPdwt2scale(image, approxSize, fMax)
     image(1:N/2, N/2 + 1:end) = horizontalDetails;
     image(N/2 + 1:end, 1:N/2) = verticalDetails;
     
-    if size(image, 1) / 2 == approxSize
-        % We're done, since we're not rescaling the approximation, and all
-        % the details are now already rescaled.
-        return;
-    else
+    if size(image, 1) / 2 ~= approxSize
+        % There's still work to be done.
         % Recursively rescale the rest of the image (top-left)
         image(1:N/2, 1:N/2) = IPdwt2scale(image(1:N/2, 1:N/2), approxSize, fMax);
     end
+    
+    % Mark the borders with white pixels
+    image(N/2,:) = 255 * ones(1, N);
+    image(:,N/2) = 255 * ones(N, 1);
 end
 

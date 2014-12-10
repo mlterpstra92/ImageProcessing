@@ -4,15 +4,18 @@ function finalImage = IPidwt2(image, j)
         finalImage = image;
     else
         [M, N] = size(image);
-        height = M / (2^j);
-        width = N / (2^j);
+        
+        % Compute the height and width of the current approximation and
+        % details.
+        h = M / (2^j);
+        w = N / (2^j);
         
         % Retrieve the current approximation, and the lowest level details
         % in all three directions.
-        Wa = image(1:height           , 1:width);
-        Wh = image(height + 1:2*height, 1:width);
-        Wv = image(1:height           , width+1:2*width);
-        Wd = image(height + 1:2*height, width+1:2*width);
+        Wa = image(1:h           , 1:w);
+        Wh = image(h + 1:2*h, 1:w);
+        Wv = image(1:h           , w+1:2*w);
+        Wd = image(h + 1:2*h, w+1:2*w);
         
         % Compose larger approximations in the vertical direction (more
         % rows).
@@ -22,7 +25,7 @@ function finalImage = IPidwt2(image, j)
         % Combine the two components and compose larger approximation in
         % the horizontal direction (more columns). Write the result in the
         % appropriate place in 'image'.
-        image(1:height * 2, 1:width * 2) =  compose_2d(component1, component2, 'columns');
+        image(1:h*2, 1:w*2) = compose_2d(component1, component2, 'columns');
         
         % Pass the image with the higher level approximation to a deeper
         % recursion.
