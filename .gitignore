@@ -60,3 +60,6 @@ slprj/
 *.xdy
 *.tdo
 *.pdf
+
+# MATLAB figures
+*.fig
