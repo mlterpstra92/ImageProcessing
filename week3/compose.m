@@ -1,11 +1,5 @@
-function res = compose(dwtCoefficients, j)
-    numApproximations = 2^j;
-    res = [];
-    approximations = dwtCoefficients(1:numApproximations);
-    details = dwtCoefficients(numApproximations + 1:2 * numApproximations);
-    for i=1:numApproximations
-        res = [res, approximations(i) + details(i), approximations(i) - details(i)];
-    end
-    res = [res / sqrt(2), dwtCoefficients(2 * numApproximations + 1:end)];
+function res = compose(a, d)
+    res = zeros(1, 2 * length(a));
+    res(1:2:end) = (a + d) / sqrt(2);
+    res(2:2:end) = (a - d) / sqrt(2);
 end
-
