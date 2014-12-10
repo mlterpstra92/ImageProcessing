@@ -25,9 +25,9 @@ To ensure the code works we have executed the function on a noisy image in an at
   \caption{The denoised image. Arguably, it is less noisy but the amount of detail is also lowered}
   \label{fig:noisyDenoise}
 \end{subfigure}
-\caption{An image of a MRI scan before and after denoising in the wavelet domain ($t = 20$, $j = 1$, $version = hard$)}
+\caption{An image of a MRI scan before and after denoising in the wavelet domain ($t = 20, j = 1, version = hard$}
 \label{fig:noiseReductionTest}
 \end{figure}
 
-Clearly, figure~\ref{fig:noisyDenoise} contains less noise than figure~\ref{fig:noisyOrig} while retaining most of its details. 
+Clearly, the 
 \clearpage

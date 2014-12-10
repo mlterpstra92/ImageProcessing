@@ -13,9 +13,8 @@ The function is called in \texttt{IPdwt2} to perform a wavelet transform on an i
 
 
 \subsection{\texorpdfstring{2D inverse \(J\)-scale DWT}{2D inverse J-scale DWT}}
-Of course, it is useful to transform an transformed image back to the original level. Therefore we implemented the inverse 2D discrete wavelet transform in the function \texttt{IPidwt2}. The function is implemented analogous to \texttt{IPdwt2} as according to figure 7.24(c) in the book. To compose an image it must be upsampled 2 times in one direction; either along the columns or the rows. The rows or columns, depending which direction is upscaled, are filled with alternating the sum and the difference of details. This function is implemented in \texttt{compose\_2d}, whose code is the following: 
+Of course, it is useful to transform an transformed image back to the original level. Therefore we implemented the inverse 2D discrete wavelet transform in the function \texttt{IPidwt2}. The function is implemented analogous to \texttt{IPdwt2} as according to figure 7.24(c) in the book. To compose an image it must be upsampled 2 times in one direction; either along the columns or the rows. 
 \matlabexternal{../compose_2d.m}
-The function \texttt{IPidwt2} takes an input image as argument, which assumes the figure contains the $J$-scale multi-resolution expansions of an image. The function \texttt{IPidwt2} is implemented in the following manner:
+
 \matlabexternal{../IPidwt2.m}
-As illustrated in figure~\ref{fig:WeHaveNoPicture} it is clear that this function is capable of inversing the wavelet transform and the original image is obtained.
 \clearpage
