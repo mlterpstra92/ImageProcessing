@@ -1,4 +1,4 @@
-f = [1, 4, -3, 1, 5, 6,7, 8];
+f = [1, 4, -3, 1, 5, 6, 7, 8];
 disp('Original spatial representation:');
 disp(f);
 
