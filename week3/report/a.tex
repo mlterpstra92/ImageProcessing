@@ -38,7 +38,7 @@ The results for \(J=1\) and \(J=2\) are as follows:
     DWT(f, J=2):
         0.5000    2.0000   -1.5000   -1.5000
 \end{lstlisting}
-\(J=1\) is `off' by a factor \(\sqrt{2}\) and \(J=2\) is `off' by a factor \(2\), which makes sense, since the DWT is applied once for each level.
+The coarser detail and approximation in level \(J = 2\) are `off' by a factor of \(\sqrt{2}\), and the finer parts are `off' by a factor of \(\sqrt{2}^2=2\), which makes sense, since the DWT is applied once for each level.
 
 \subsection{\texorpdfstring{1D inverse \(J\)-scale DWT}{1D inverse J-scale DWT}}
 The approximations computed in the previous section, along with their accompanying details, can be used to go back to a finer level of approximation, and ultimately, the original image can be restored.
