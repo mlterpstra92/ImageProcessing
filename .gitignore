@@ -58,6 +58,7 @@ slprj/
 *.toc
 *.vrb
 *.xdy
+*.backup
 *.tdo
 *.pdf
 
