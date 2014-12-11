@@ -25,6 +25,8 @@ E.g., \cite[Eq. 7.5-2]{gonzalez2002digital}, for the horizontal detail component
 \[\psi^H(x, y) = \psi(x)\varphi(y)\]
 For the implementation, this roughly means that the image first has to be decomposed along the \(y\)-axis, and the approximation\footnote{Because it says \(\varphi(y)\), which is the scaling function.} part of that decomposition must be further decomposed along the \(x\)-axis, and the resulting detailed\footnote{Because it says \(\psi(x)\), which is the wavelet function.} part will be \(\psi^H(x, y)\), the horizontal details.
 
+A comprehensive overview of the full transformation is depicted in \cite[Figure 7.24(a)]{gonzalez2002digital}.
+
 Using this method for the two-dimensional scaling and wavelet functions, the following function has been implemented:
 \matlabexternal{../IPdwt2.m}
 As in the one-dimensional case, the function is recursive, to reflect the recursive nature of the representation.

@@ -1,0 +1,76 @@
+\exercise{Highboost filtering}
+Sometimes it is desirable to highlight high-frequency components in an image without eliminating the low-frequency components. One way to do this is by using a technique called highboost filtering. This technique works by first blurring the image, then subtracting the blurred image from the original image - the result of this operation is called the mask - and then adding the mask to the original image. Now edges are highlighted while retaining the same information about low-frequency components. 
+\subsection{Implementation}
+We have implemented the highboost filter in the function \texttt{IPhighboost}. We have set the blur mask to the same mask as in figure 3.32(a) as in the book, or as in table~\ref{tbl:mask}.
+\begin{table}[!htb]
+\begin{center}
+$\frac{1}{9}$
+\begin{tabular}{|c|c|c|}\hline
+1 & 1 & 1 \\ \hline
+1 & 1 & 1 \\ \hline
+1 & 1 & 1 \\ \hline
+\end{tabular}
+\caption{The gaussian mask used for blurring}
+\label{tbl:mask}
+\end{center}
+\end{table}
+The following code implements the highboost filter operation:
+\matlabexternal{IPhighboost.m}
+When tested on the image "dipxetext.tif" the output for $k = 4.5$ gives the result of image~\ref{fig:dipxe}. This is to our opinion the closest approximation of image 3.40(e) in the book. 
+\subsection{Negative values}
+If an image \verb f  contains only positive values it is possible that the output image \verb g  contains negative values. Consider the image described in table~\ref{tbl:inImage}. This image clearly contains only positive values. However, if is image is processed using \texttt{IPhighboost} with $k \geq 0.13$ the output image \verb g  will contain a negative value as table~\ref{tbl:outImage} illustrates. We presume the minimal value of $k$ where negative values occur in the output image has a relation with the minimal value that occurs in the input image but we could not find strong evidence what this relation is. 
+\begin{table}[!ht]
+  \centering
+  \subfloat[First Subtable\label{tab:chapter4:1a}]{
+    \tiny
+    \centering
+    \begin{tabular}{|c|c|c|}\hline
+      a&b&c\\
+      d&e&f\\\hline
+    \end{tabular}
+  }
+  \subfloat[Second Subtable\label{tab:chapter4:1b}]{
+    \tiny
+    \centering
+    \begin{tabular}{|c|c|c|}\hline
+      g&h&i\\
+      j&k&l\\\hline
+    \end{tabular}
+  }
+  \subfloat[Third Subtable\label{tab:chapter4:1c}]{
+    \tiny
+    \centering
+    \begin{tabular}{|c|c|c|}\hline
+      m&n&o\\
+      p&q&r\\\hline
+    \end{tabular}
+  }
+  \caption{Testing}\label{tab:chapter4:1}
+\end{table}
+% \begin{table}[!htb]
+% \begin{center}
+% \subtable[]{
+% \tiny
+% \centering
+% \begin{tabular}{|c|c|c|}\hline
+% 1 & 1 & 1 \\ \hline
+% 1 & 0.1 & 1 \\ \hline
+% 1 & 1 & 1 \\ \hline
+% \end{tabular}
+% \label{afd}
+% }
+% \subtable[]{
+% \tiny
+% \centering
+% \begin{tabular}{|c|c|c|}\hline
+% 1.3278 & 1.2167 & 1.3278 \\ \hline
+% 1.2167 & -0.3000 & 1.2167 \\ \hline
+% 1.3278 & 1.2167 & 1.3278 \\ \hline
+% \end{tabular}
+% \label{adsf}
+% }
+% \caption{The gaussian mask used for blurring}
+% \label{tbl:inOutImage}
+% \end{center}
+% \end{table}
+\clearpage

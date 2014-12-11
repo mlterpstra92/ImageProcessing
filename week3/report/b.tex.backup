@@ -1,0 +1,20 @@
+%!TEX root = report.tex
+\exercise{2D wavelet transforms}
+\subsection{\texorpdfstring{2D \(J\)-scale DWT}{2D J-scale DWT}}
+Of course, the 1D-function of exercise 1 can be extended to 2D to operate on images. In this case, there will be four separate wavelets: one separable scaling function for approximating the image and three directional wavelets for capturing details in horizontal, vertical and diagonal details of an image. We have implemented the transformation of an image from level $J$ to level $J + 1$ as illustrated in figure 7.24(a)\cite[p.525]{gonzalez2002digital} in the book. The following function, which is used in \texttt{IPdwt2} decomposes an image in odd/even rows or columns depending which part of the transform is executed:
+\matlabexternal{../decompose_2d.m}
+
+The function is called in \texttt{IPdwt2} to perform a wavelet transform on an image. The implemented in the following code:
+\matlabexternal{../IPdwt2.m}
+\subsection{Contrast-stretching of wavelet coefficients}
+
+
+\subsection{Transforming a vase}
+
+
+\subsection{\texorpdfstring{2D inverse \(J\)-scale DWT}{2D inverse J-scale DWT}}
+Of course, it is useful to transform an transformed image back to the original level. Therefore we implemented the inverse 2D discrete wavelet transform in the function \texttt{IPidwt2}. The function is implemented analogous to \texttt{IPdwt2} as according to figure 7.24(c) in the book. To compose an image it must be upsampled 2 times in one direction; either along the columns or the rows. 
+\matlabexternal{../compose_2d.m}
+
+\matlabexternal{../IPidwt2.m}
+\clearpage

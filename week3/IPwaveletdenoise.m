@@ -1,6 +1,5 @@
 function denoisedImage = IPwaveletdenoise(image, j, threshold, version)
-%IPWAVELETDENOISE Summary of this function goes here
-%   Detailed explanation goes here
+    %default to hard filtering
     if nargin < 4
         version = 'hard';
     end
@@ -14,12 +13,18 @@ function denoisedImage = IPwaveletdenoise(image, j, threshold, version)
     approx = noisyWavelets(1:height, 1:width);
     noisyWavelets(1:height, 1:width) = zeros(height, width);
     
-    %Filter everything lower than the threshold
-    noisyWaveletsFiltered = noisyWavelets;
-    noisyWaveletsFiltered(abs(noisyWavelets) < threshold) = 0;
-    if strcmp(version, 'hard') ~= 1
-        % scale nonzero thresholds towards 0 (?)
+    %Filter everything below than the threshold with either hard or soft
+    %filtering
+    if strcmp(version, 'hard') == 1
+        noisyWaveletsFiltered = noisyWavelets .* (abs(noisyWavelets) > threshold);
+    else
+        tmp = abs(noisyWavelets) - threshold;
+        tmp = (tmp+abs(tmp))/2;
+        noisyWaveletsFiltered = sign(noisyWavelets) .* tmp;
     end
+    
+    figure; imshow(noisyWaveletsFiltered, [0 255]);
+    figure; imshow(approx, [0 255]); figure
     
     %Place the approximation back and compute the original image
     noisyWaveletsFiltered(1:height, 1:width) = approx;
