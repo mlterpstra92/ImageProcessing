@@ -11,7 +11,8 @@ We have implemented both ways of scaling in the function \texttt{IPwaveletdenois
 This function performs filtering in the details up to level $j$. The approximation is stored to restore it later on when the filtering is complete. In order to transfer it back to the spatial domain, the approximation is needed and would otherwise be lost in the filtering. 
 The actual filtering is performed here:
 \matlabexternal{../performFiltering.m}
-The code performs exactly what it should do according to the description: it performs denoising by thresholding in the wavelet domain. 
+The code performs the filtering of the details of the wavelet in level $J$. It can perform either hard or soft filtering depending on which mode is selected. 
+
 \subsection{Denoising a noisy MRI image}
 To ensure the code works we have executed the function on a noisy image in an attempt to denoise it. We have loaded \texttt{noisymri.tif}, which is a noisy MRI scan, in an attempt to denoise it. We have found out that a threshold value $t = 2$ is the best threshold value: it removes most of the noise while keeping most of the details. Figures~\ref{fig:noisyOrig} and~\ref{fig:noisyDenoise} illustrate the image before and after denoising with $t = 2$.
 \begin{figure}[htb]
