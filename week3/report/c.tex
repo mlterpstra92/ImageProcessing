@@ -7,11 +7,13 @@ Noise is usually removed in the wavelet domain by applying thresholding to the d
 
 We have implemented both ways of scaling in the function \texttt{IPwaveletdenoise} which allows an user to threshold the $J$-scale wavelet domain of an image with either hard or soft filtering. The function is implemented as following:
 \matlabexternal{../IPwaveletdenoise.m}
+
+This function performs filtering in the details up to level $j$. The approximation is stored to restore it later on when the filtering is complete. In order to transfer it back to the spatial domain, the approximation is needed and would otherwise be lost in the filtering. 
 The actual filtering is performed here:
 \matlabexternal{../performFiltering.m}
 The code performs exactly what it should do according to the description: it performs denoising by thresholding in the wavelet domain. 
 \subsection{Denoising a noisy MRI image}
-To ensure the code works we have executed the function on a noisy image in an attempt to denoise it. We have loaded \texttt{noisymri.tif}, which is a noisy MRI scan, in an attempt to denoise it. We have found out that a threshold value $t = 20$ is the best threshold value: it removes most of the noise while keeping most of the details. Figures~\ref{fig:noisyOrig} and~\ref{fig:noisyDenoise} illustrate the image before and after denoising with $t = 20$.
+To ensure the code works we have executed the function on a noisy image in an attempt to denoise it. We have loaded \texttt{noisymri.tif}, which is a noisy MRI scan, in an attempt to denoise it. We have found out that a threshold value $t = 2$ is the best threshold value: it removes most of the noise while keeping most of the details. Figures~\ref{fig:noisyOrig} and~\ref{fig:noisyDenoise} illustrate the image before and after denoising with $t = 2$.
 \begin{figure}[htb]
 \centering
 \begin{subfigure}{.5\textwidth}
@@ -27,7 +29,7 @@ To ensure the code works we have executed the function on a noisy image in an at
   \caption{The denoised image. Arguably, it is less noisy but the amount of detail is also lowered}
   \label{fig:noisyDenoise}
 \end{subfigure}
-\caption{An image of a MRI scan before and after denoising in the wavelet domain ($t = 2$, $j = 3$, $version = soft$)}
+\caption{An image of a MRI scan before and after denoising in the wavelet domain ($t = 3$, $j = 3$, $version = soft$)}
 \label{fig:noiseReductionTest}
 \end{figure}
 
