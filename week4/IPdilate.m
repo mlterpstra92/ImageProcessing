@@ -1,5 +1,7 @@
 function dilated = IPdilate(image, structuringElement )
-    
+    if nargin < 2
+        structuringElement = logical([0, 1, 0; 1, 1, 1; 0, 1, 0]);
+    end
     % Initialise `dilated' as a zero-padded copy of the input image.
     dilated = padarray(image, [1, 1]);
     

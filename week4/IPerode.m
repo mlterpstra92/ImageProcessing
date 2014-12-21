@@ -1,5 +1,7 @@
 function eroded = IPerode(image, structuringElement )
-    
+    if nargin < 2
+        structuringElement = logical([0, 1, 0; 1, 1, 1; 0, 1, 0]);
+    end
     % Initialise `eroded' as an image with only zeroes.
     eroded = zeros(size(image));
     
