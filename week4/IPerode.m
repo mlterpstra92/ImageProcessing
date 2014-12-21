@@ -1,13 +1,21 @@
-function eroded = IPerode(logicalImage, structuringElement )
-    [M, N] = size(logicalImage);
-    eroded = zeros(M + 2, N + 2);
-    eroded(2:M + 1, 2:N+1) = logicalImage;
-    logicalImage = eroded;
-    for i=2:M + 1
-        for j=2:N + 1
-            slice = logicalImage(i-1:i+1, j-1:j+1);
-            eroded(i, j) = all(all(((slice & structuringElement) == structuringElement)));
+function eroded = IPerode(image, structuringElement )
+    
+    % Initialise `eroded' as an image with only zeroes.
+    eroded = zeros(size(image));
+    
+    % Zero-pad the input image.
+    image = padarray(image, [1, 1]);
+    
+    [M, N] = size(image);
+    for i=2:M - 1
+        for j=2:N - 1
+            % Take the 3-by-3 neighbourhood where the SE is currently.
+            neighbourhood = image(i-1:i+1, j-1:j+1);
+            
+            % Set pixel (j-1, i-1) to 1 only if all pixels of the
+            % structuring element `fit inside' the pixels in the current
+            % neighbourhood.
+            eroded(i - 1, j - 1) = all(all(((neighbourhood & structuringElement) == structuringElement)));
         end
     end
-    eroded = eroded(2:M + 1, 2:N + 1);
 end
