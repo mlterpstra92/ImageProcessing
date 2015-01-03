@@ -3,7 +3,7 @@ function dilated = IPdilate(image, structuringElement )
         structuringElement = logical([0, 1, 0; 1, 1, 1; 0, 1, 0]);
     end
     % Initialise `dilated' as a zero-padded copy of the input image.
-    dilated = padarray(image, [1, 1]);
+    dilated = logical(padarray(image, [1, 1]));
     
     [M, N] = size(image);
     for i=2:M+1

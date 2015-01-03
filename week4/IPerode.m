@@ -6,7 +6,7 @@ function eroded = IPerode(image, structuringElement )
     eroded = zeros(size(image));
     
     % Zero-pad the input image.
-    image = padarray(image, [1, 1]);
+    image = logical(padarray(image, [1, 1]));
     
     [M, N] = size(image);
     for i=2:M - 1
