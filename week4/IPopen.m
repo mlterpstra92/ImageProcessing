@@ -4,6 +4,5 @@ function image = IPopen( image, structuringElement )
     end
     % First erode, then dilate.
     image = IPdilate(IPerode(image, structuringElement), structuringElement);
-
 end
 

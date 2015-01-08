@@ -12,7 +12,7 @@ function outImage = IPclassify(threshold)
         
         % IPrecon_by_dilation returns a logical and we want definitely
         % something that is either 128 or 64, so multiply by 64
-        reconstructed = IPrecon_by_dilation(mask, image, [1,1,1;1,1,1;1,1,1]) * 128;
+        reconstructed = IPrecon_by_dilation(mask, image, ones(3, 3)) * 128;
         
         % If the number of pixels is smaller than threshold (so bolt)
         % divide by 2 again so result is 64 instead of 128
