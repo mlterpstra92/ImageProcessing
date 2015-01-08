@@ -14,7 +14,7 @@ function eroded = IPerode(image, structuringElement )
             % Set pixel (j-1, i-1) to 1 only if all pixels of the
             % structuring element `fit inside' the pixels in the current
             % neighbourhood.
-            eroded(i - 1, j - 1) = all(all(((neighbourhood & structuringElement) == structuringElement)));
+            eroded(i, j) = all(all(((neighbourhood & structuringElement) == structuringElement)));
         end
     end
 end
