@@ -21,9 +21,7 @@ Erosion can be described in terms of set theory as the following set: \(A \ominu
 This can also be interpreted as all the points from \(A\) where \(B\) `fits' in its entirety.
 This means that a pixel \(p_0\) in \(A\) is only retained if all of is contained in \(A\), with \(B\)'s origin at \(p_0\).
 
-Because \(A\) can never grow larger when eroded, padding of the image is not necessary as opposed to during dilation.
-However, the original image needs to be padded because the overlay of the structuring element may fall out of range with the image.
-We have implemented \texttt{IPerode} in the following function:
+Because \(A\) can never grow larger when eroded, padding of the image is not necessary as opposed to during dilation. We have implemented \texttt{IPerode} in the following function:
 \matlabexternal{../IPerode.m}
 \clearpage
 \subsection{Testing}

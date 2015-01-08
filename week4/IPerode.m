@@ -5,9 +5,6 @@ function eroded = IPerode(image, structuringElement )
     % Initialise `eroded' as an image with only zeroes.
     eroded = zeros(size(image));
     
-    % Zero-pad the input image.
-    image = logical(padarray(image, [1, 1]));
-    
     [M, N] = size(image);
     for i=2:M - 1
         for j=2:N - 1
