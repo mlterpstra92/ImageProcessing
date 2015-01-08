@@ -1,13 +1,27 @@
 %!TEX root = report.tex
 \exercise{Classifications}
+It is useful to recognize different objects in the same image. It is even more useful to classify those object in different categories. In this assignment we try to classify nuts and bolts that are visible on an image. In this case the nuts must obtain an image value of 64 and bolts and image value of 128. Of course, the background should get an image value of 0.
 
+We solved this problem by using morphological and set operations only. More specific, the core of our algorithm is applying morphological reconstruction by dilation. The algorithm runs while there are still undetected objects in an image $G$ (i.e. pixels with value 1). This obtains the set $U = \{a | a \in G, a = 1\}$. It creates a mask by selecting an element $i \in U$ and placing it at the same location at a mask image $F$, which consists further of the values 0. Then the reconstruction by dilation image $X_k$ is obtained by performing $X_k = (X_{k-1} \oplus B) \cap G, k = 1, 2, 3, \ldots$ with $X_0 = F$.
+The classification is then determined by $s = |\{x | x \in X_k, x > 0\}|$. If $s > t$ then it is classified as bolt, else as nut. In this case, $t$ is a threshold. The classified result is then placed back in the original image, thus exhausting the remaining 1-values and ensuring termination of the algorithm.
+
+We have implemented these steps in the function \texttt{IPclassify}: 
+
+\matlabexternal{../IPclassify.m}
+\clearpage
+When this code is ran with the image \texttt{nutsbolts} and a threshold of 1000 the following image is obtained:
 \begin{figure}[htb]
  \centering
- \includegraphics[width=\linewidth]{classification.eps}
- \caption{The nuts and bolts classified by \textit{opening by reconstruction}}
+ \includegraphics[scale=.69]{nutsbolts.eps}
+ \caption{The original, showing logical values that are either 0 or 1}
+ \label{fig:nutsbolts}
+\end{figure}
+\begin{figure}[htb]
+ \centering
+ \includegraphics[scale=.69]{classification.eps}
+ \caption{The nuts and bolts classified by \textit{opening by reconstruction}. The background is 0, the nuts have a value of 64 and the bolts have value 128.}
  \label{fig:classification}
 \end{figure}
 
-
-\matlabexternal{../IPclassify.m}
+As the figures indicate, figure~\ref{fig:classification} show the classification of figure~\ref{fig:nutsbolts}.
 \clearpage
