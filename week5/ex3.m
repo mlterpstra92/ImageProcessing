@@ -2,7 +2,7 @@ numImages = 6;
 images = [];
 titles = {'Visible blue', 'Visible green', 'Visible red', 'Near infrared', 'Middle infrared', 'Thermal infrared'};
 
-
+close all
 % Construct matrix and show original images
 figure
 for i=1:numImages

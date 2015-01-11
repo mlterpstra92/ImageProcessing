@@ -3,7 +3,7 @@ function [image, threshold] = IPauthothres(image, deltaT)
         deltaT = 0.1;
     end
     % Initial threshold guess.
-    threshold = max(max(image)) / 2;
+    threshold = (max(max(image)) - min(min(image))) / 2;
     previousThreshold = 0;
     
     % Continue when there is enough change in the threshold
