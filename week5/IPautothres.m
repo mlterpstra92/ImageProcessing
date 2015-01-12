@@ -3,18 +3,20 @@ function [image, threshold] = IPautothres(image, deltaT)
         deltaT = 0.1;
     end
     % Initial threshold guess.
-    threshold = (max(max(image)) - min(min(image))) / 2;
-    previousThreshold = 0;
+    threshold = (max(image(:)) - min(image(:))) / 2;
+    previousThreshold = Inf;
     
     % Continue when there is enough change in the threshold
     while abs(threshold - previousThreshold) > deltaT
         %Segment the image based on the threshold
-        firstValues = image(image > threshold);
-        secondValues = image(image <= threshold);
+        G_1 = image(image > threshold);
+        G_2 = image(image <= threshold);
+        
+        size(G_1)
         
         %Calculate the averages of the segmentations
-        firstMean = mean(firstValues);
-        secondMean = mean(secondValues);
+        firstMean = mean(G_1);
+        secondMean = mean(G_2);
         
         %Continue iteration with new guess
         previousThreshold = threshold;
