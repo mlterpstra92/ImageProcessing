@@ -1,4 +1,4 @@
-function [image, threshold] = IPauthothres(image, deltaT)
+function [image, threshold] = IPautothres(image, deltaT)
     if nargin < 2
         deltaT = 0.1;
     end
