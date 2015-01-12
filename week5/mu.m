@@ -1,4 +1,3 @@
-function mu_z = mu(hist, n, m)
-    mu_z = sum(((hist - m) .^ n) .* hist);
+function mu_n = mu(zs, hist, m, n)
+    mu_n = dot((zs - m).^n, hist);
 end
-
