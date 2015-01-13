@@ -1,10 +1,10 @@
 %!TEX root = report.tex
 \exercise{Global thresholding}
-\subsection{\texttt{IPautothres}}
+\subsection{\texttt{IPautothresh}}
 Global thresholding is a method to extract one or several different object(s) from an image. 
 In the most basic case a foreground object of interest is separated from the background, but it can be expanded to more complex segmentations. 
-One obvious way to extract objects from the background is by selecting a threshold \(T\) and classify a pixel to a category based on the intensity of that pixel with respect to the threshold\footnote{insert citation to book here}. 
-Mathematically speaking, a pixel in a segmented pixel, \(g(x, y)\) is given by 
+One obvious way to extract objects from the background is by selecting a threshold \(T\) and classify a pixel to a category based on the intensity of that pixel with respect to the threshold.\cite[p. 738]{gonzalez2002digital} 
+Mathematically speaking, a segmented pixel \(g(x, y)\), based on thresholding of a pixel \(f(x, y)\) is given by 
 \[ 
   g(x,y) = \left\{ 
   \begin{array}{l l}
@@ -32,9 +32,9 @@ We found that this provides an adequate initial guess in most cases and is there
 
 \subsection{All Around the World or the Myth of Fingerprints}
 We have tested the function on the image \texttt{fingerprint.tif} with \(\Delta T = \frac{1}{10}\). 
-This figure is displayed in figure~\ref{fig:original_fingerprint} and its segmentation is visible in figure~\ref{fig:segmented_fingerprint}.
-The value of \(T_i = 97.5\) and the reported value of \(T_n = 125.386\) which is close to the literature value of 125.
-As visible with the naked eye, figure~\ref{fig:segmented_fingerprint} seems be a good segmentation of figure~\ref{fig:original_fingerprint}.
+This image is displayed in Figure~\ref{fig:original_fingerprint} and its segmentation is visible in Figure~\ref{fig:segmented_fingerprint}.
+The initial guess of the threshold was \(T_0 = 97.5\) and the final, optimal threshold is \(T_a = 125.386\) which is close to the literature value of 125.\cite[p. 742]{gonzalez2002digital}
+As visible with the naked eye, Figure~\ref{fig:segmented_fingerprint} seems be a good segmentation of Figure~\ref{fig:original_fingerprint}.
 \begin{figure}[htb]
  \centering
  \includegraphics[width=\linewidth]{original_fingerprint.eps}
