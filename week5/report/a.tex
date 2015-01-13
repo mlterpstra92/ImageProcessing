@@ -24,8 +24,8 @@ Then the next value is calculated using \(T_{n+1} = \frac{m_1 + m_2}{2}\).
 This process is repeated until an optimal value \(T_a\) is reached. 
 This optimal value is reached when \(\abs{T_n - T_{n - 1}} < \Delta T\) for some predefined precision \(\Delta T\).
 \clearpage
-We have implemented this algorithm in the function \texttt{IPautothresh}:
-\matlabexternal{../IPautothres.m}
+We have implemented this algorithm in the function \texttt{IPautothres}:
+\matlabexternal{../IPautothresh.m}
 
 As the code displays we set the value of \(T_i\) to the middle value of the image. 
 We found that this provides an adequate initial guess in most cases and is therefore warranted. 
