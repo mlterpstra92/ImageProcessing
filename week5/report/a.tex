@@ -1,8 +1,8 @@
 %!TEX root = report.tex
 \exercise{Global thresholding}
-\subsection{\texttt{IPautothresh}}
+\subsection{\texttt{IPautothres}}
 Global thresholding is a method to extract one or several different object(s) from an image. 
-In the most basic case an foreground object of interest is separated from the background, but it can be expanded to more complex segmentations. 
+In the most basic case a foreground object of interest is separated from the background, but it can be expanded to more complex segmentations. 
 One obvious way to extract objects from the background is by selecting a threshold \(T\) and classify a pixel to a category based on the intensity of that pixel with respect to the threshold\footnote{insert citation to book here}. 
 Mathematically speaking, a pixel in a segmented pixel, \(g(x, y)\) is given by 
 \[ 
@@ -16,12 +16,13 @@ If \(T\) is constant throughout the image this operation is global thresholding.
 
 One obvious problem with this method is choosing the best value of \(T\) which optimally separates an object from the background. 
 The notion of global autothresholding rests on that the mean intensity values between the segmented groups should be close to each other.
+
 The estimation of \(T_a\) can be done in an iterative manner. 
-An initial estimate \(T_i\) is made and an image is segmented using this threshold. 
-The means \(m_1, m_2\) are estimated of both segmented groups. 
-Then the next value is calculated using \(T_{i+1} = \frac{m_1 + m_2}{2}\).
-This process can be repeated until an optimal value \(T_n\) is reached. 
-This value is called \(T_n\) when \(\mid T_n - T_{n - 1}\mid < \Delta T\) for some predefined parameter \(\Delta T\).
+An initial estimate \(T_0\) is made and an image is segmented using this threshold. 
+The means \(m_1, m_2\) are calculated of both segmented groups.
+Then the next value is calculated using \(T_{n+1} = \frac{m_1 + m_2}{2}\).
+This process is repeated until an optimal value \(T_a\) is reached. 
+This optimal value is reached when \(\abs{T_n - T_{n - 1}} < \Delta T\) for some predefined precision \(\Delta T\).
 \clearpage
 We have implemented this algorithm in the function \texttt{IPautothresh}:
 \matlabexternal{../IPautothres.m}
