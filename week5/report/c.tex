@@ -1,7 +1,17 @@
 %!TEX root = report.tex
 \exercise{Principal components}
+Principal component analysis can be useful for describing sets of images that have the same spatial orientation, but have different values for their pixels.
+That is, they describe the same objects, using the same coordinate system, but their intensities have a different interpretation.
+An example is a set of images where every image uses a different spectral band, like the \texttt{WashingtonDC\_Bandx\_564.tif} images.
+
 \subsection{\texttt{IPprincipalcomponents}}
+Our implementation of the principal component transform is based on \cite[Sec. 11.4]{gonzalez2002digital}.
+In essence, it works by first formatting all images in one matrix \(\mathbf{x}\) containing one image on every row, then retrieving the eigenvectors of the covariance matrix of \(\mathbf{x}\), arranging them by their eigenvalues in descending order in a matrix \(\mathbf{A}\), and finally multiplying \(\mathbf{A}\) with the difference matrix \(\mathbf{D} = \mathbf{x} - \mathbf{m_x}\), where \(\mathbf{m_x}\) is the mean vector of \(\mathbf{x}\).
+
+Our implementation can be seen in the listing of the \texttt{IPprincipalcomponents} function below.
+The input argument \texttt{k} can be set to use the \texttt{k} largest eigenvalues and their corresponding eigenvectors for the reconstruction of the original image.
 \matlabexternal{../IPprincipalcomponents.m}
+
 \subsection{Reading and arranging images}
 \begin{figure}[htb]
  \centering
@@ -11,17 +21,19 @@
 \end{figure}
 \[
 \texttt{images} = \begin{bmatrix}
-       17  & 22  & \ldots & 26  & 26   \\[0.3em]
-       6   & 20  & \ldots & 27  & 27   \\[0.3em]
-       9   & 19  & \ldots & 28  & 28   \\[0.3em]
-       154 & 98  & \ldots & 149 & 149  \\[0.3em]     
-       94  & 101 & \ldots & 116 & 116  \\[0.3em]
-       95  & 73  & \ldots & 84  & 84  
+	17  & 22  & \ldots & 26  & 26   \\[0.3em]
+	6   & 20  & \ldots & 27  & 27   \\[0.3em]
+	9   & 19  & \ldots & 28  & 28   \\[0.3em]
+	154 & 98  & \ldots & 149 & 149  \\[0.3em]     
+	94  & 101 & \ldots & 116 & 116  \\[0.3em]
+	95  & 73  & \ldots & 84  & 84  
 \end{bmatrix}
 \]
 The \texttt{images} does indeed contain 6 rows of the images with \(564^2\) columns.
 \clearpage
+
 \subsection{Principal components transform}
+
 \begin{figure}[htb]
  \centering
  \includegraphics[width=\linewidth]{full_pca.eps}
@@ -30,13 +42,16 @@ The \texttt{images} does indeed contain 6 rows of the images with \(564^2\) colu
 \end{figure}
 Eigenvalues (desc.): 10344, 2966, 1401, 203, 94 and 31.
 \clearpage
+
 \subsection{Partial reconstruction}
+
 \begin{figure}[htb]
  \centering
  \includegraphics[width=\linewidth]{partial_recon_pca.eps}
  \caption{The reconstruction of the matrix constructed in (b) using three largest eigenvalues}
  \label{fig:partial_recon_pca}
 \end{figure}
+
 \begin{figure}[htb]
  \centering
  \includegraphics[width=\linewidth]{differences_pca.eps}
