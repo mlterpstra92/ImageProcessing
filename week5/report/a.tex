@@ -30,7 +30,7 @@ We have implemented this algorithm in the function \texttt{IPautothres}:
 As the code displays we set the value of \(T_i\) to the middle value of the image. 
 We found that this provides an adequate initial guess in most cases and is therefore warranted. 
 
-\subsection{All Around the World or the Myth of Fingerprints}
+\subsection{Fingerprint segmentation}
 We have tested the function on the image \texttt{fingerprint.tif} with \(\Delta T = \frac{1}{10}\). 
 This image is displayed in Figure~\ref{fig:original_fingerprint} and its segmentation is visible in Figure~\ref{fig:segmented_fingerprint}.
 The initial guess of the threshold was \(T_0 = 97.5\) and the final, optimal threshold is \(T_a = 125.386\) which is close to the literature value of 125.\cite[p. 742]{gonzalez2002digital}

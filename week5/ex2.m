@@ -9,7 +9,6 @@ cereal = cereal(end - 100:end, end-100:end);
 bubbles_stats = IPtexturemeasures(bubbles);
 cktboard_stats = IPtexturemeasures(cktboard);
 cereal_stats = IPtexturemeasures(cereal);
-
 figure;
 subplot(1, 3, 1);
 imshow(bubbles);
