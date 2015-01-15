@@ -33,6 +33,10 @@ The \texttt{images} does indeed contain 6 rows of the images with \(564^2\) colu
 \clearpage
 
 \subsection{Principal components transform}
+The principal component transform has been applied to the different spectral bands of the loaded images.
+The results are shown in Figure~\ref{fig:full_pca}.
+
+The eigenvalues (in descending order) are 10344, 2966, 1401, 203, 94 and 31.
 
 \begin{figure}[htb]
  \centering
@@ -40,10 +44,13 @@ The \texttt{images} does indeed contain 6 rows of the images with \(564^2\) colu
  \caption{The principal components of the matrix constructed in (b)}
  \label{fig:full_pca}
 \end{figure}
-Eigenvalues (desc.): 10344, 2966, 1401, 203, 94 and 31.
+
 \clearpage
 
 \subsection{Partial reconstruction}
+The transformed images can be transformed back a similar version of the original images, by using the three largest eigenvalues and their corresponding eigenvectors.
+The results are shown in Figure~\ref{fig:partial_recon_pca}.
+The difference of the partial reconstruction is shown in Figure~\ref{fig:differences_pca}, where the sum of the differences with the original image is shown in parentheses.
 
 \begin{figure}[htb]
  \centering

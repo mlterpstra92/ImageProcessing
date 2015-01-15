@@ -3,6 +3,7 @@ close all;
 numImages = 6;
 images = zeros(numImages, 564 * 564);
 titles = {'Visible blue', 'Visible green', 'Visible red', 'Near infrared', 'Middle infrared', 'Thermal infrared'};
+titlesPCA = {'Channel 1', 'Channel 2', 'Channel 3', 'Channel 4', 'Channel 5', 'Channel 6'};
 
 % Construct matrix and show original images
 figure;
@@ -22,7 +23,7 @@ figure;
 for j=1:numImages
     subplot(3, 2, j);
     imshow(reshape(Y(j, :), [M, N]), [0 255]);
-    title(strcat(titles(j), ' - full PCA'));
+    title(strcat(titlesPCA(j), ' - full PCA'));
 end
 
 % Retain three largest eigenvalues
@@ -33,7 +34,7 @@ figure;
 for j=1:numImages
     subplot(3, 2, j);
     imshow(reshape(Q(j, :), [M, N]), [0 255]);
-    title(strcat(titles(j), ' - partial PCA'));
+    title(strcat(titlesPCA(j), ' - partial PCA'));
 end
 
 figure;
