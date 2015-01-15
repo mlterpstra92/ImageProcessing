@@ -32,7 +32,6 @@ function [Y, X, e]  = IPprincipalcomponents( x, k )
     
     % Compute the (possibly partial) reconstruction
     At = A';
-    X = (At(:, 1:k) * Y(1:k, :));
-    X = X + repmat(mx, [1, size(X, 2)]);
+    X = (At(:, 1:k) * Y(1:k, :)) + repmat(mx, [1, K]);
 end
 

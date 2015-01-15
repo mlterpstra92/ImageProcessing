@@ -4,6 +4,9 @@ Principal component analysis can be useful for describing sets of images that ha
 That is, they describe the same objects, using the same coordinate system, but their intensities have a different interpretation.
 An example is a set of images where every image uses a different spectral band, like the \texttt{WashingtonDC\_Bandx\_564.tif} images.
 
+In a sense, the principal component transform resembles the wavelet transform, since the processes and the goals are similar.
+However, from a mathematical perspective, they seem to differ severely.
+
 \subsection{\texttt{IPprincipalcomponents}}
 Our implementation of the principal component transform is based on \cite[Sec. 11.4]{gonzalez2002digital}.
 In essence, it works by first formatting all images in one matrix \(\mathbf{x}\) containing one image on every row, then retrieving the eigenvectors of the covariance matrix of \(\mathbf{x}\), arranging them by their eigenvalues in descending order in a matrix \(\mathbf{A}\), and finally multiplying \(\mathbf{A}\) with the difference matrix \(\mathbf{D} = \mathbf{x} - \mathbf{m_x}\), where \(\mathbf{m_x}\) is the mean vector of \(\mathbf{x}\).
@@ -62,7 +65,7 @@ The difference of the partial reconstruction is shown in Figure~\ref{fig:differe
 \begin{figure}[htb]
  \centering
  \includegraphics[width=\linewidth]{differences_pca.eps}
- \caption{Difference between the matrix constructed in (b) and the partial reconstruction using three largest eigenvalues}
+ \caption{Difference between the matrix constructed in (b) and the partial reconstruction using three largest eigenvalues.}
  \label{fig:differences_pca}
 \end{figure}
 

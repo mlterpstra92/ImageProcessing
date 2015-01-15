@@ -28,7 +28,6 @@ end
 
 % Retain three largest eigenvalues
 [Q, Z, ef] = IPprincipalcomponents(images, 3);
-ef'
 
 figure;
 for j=1:numImages
