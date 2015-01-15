@@ -65,4 +65,10 @@ The difference of the partial reconstruction is shown in Figure~\ref{fig:differe
  \caption{Difference between the matrix constructed in (b) and the partial reconstruction using three largest eigenvalues}
  \label{fig:differences_pca}
 \end{figure}
+
+It is visible that the partial reconstruction fails to retain all minor details that were in the original image.
+This is due to the fact that only a part of the information is used.
+
+It seems like an appropriate way to remove noise from an image, because the noise contributes in particular to the low-variation channels of the PCA. 
+
 \clearpage
